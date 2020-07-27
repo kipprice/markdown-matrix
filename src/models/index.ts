@@ -1,7 +1,7 @@
 export type Level = string;
 export type Category = string;
 
-export type DisplayMode = 'list' | 'matrix';
+export type DisplayMode = 'list' | 'matrix' | 'none';
 
 export type CompetencyId = string;
 

@@ -1,0 +1,27 @@
+.upload {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    input {
+        display: none;
+    }
+
+    label {
+        font-family: 'Anonymous Pro';
+        background-color: #333;
+        color: #FFF;
+        padding: 0.5rem;
+        cursor: pointer;
+
+        &:hover {
+            box-shadow: 4px 4px 0 2px #DDD;
+        }
+    }
+}
+
+.upload.hidden {
+    display: none;
+}
