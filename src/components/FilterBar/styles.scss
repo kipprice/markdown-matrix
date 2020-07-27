@@ -14,9 +14,12 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  flex-shrink: 0;
+  min-width: 12vw;
 
   &.collapsed {
     max-width: 4rem;
+    min-width: 0;
 
     .label,
     .title,
@@ -86,5 +89,7 @@
     align-items: flex-end;
     font-size: 0.8rem;
     padding-bottom: 1rem;
+    padding: 1rem 0.5rem;
+    box-sizing: border-box;
   }
 }

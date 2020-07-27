@@ -21,6 +21,14 @@ export const FilterBar: React.FC = () => {
       <DisplayModeFilter />
       <LevelFilters />
       <CategoryFilters />
+
+      {hasCompetencies && (
+        <div className="upload">
+          <UploadButton theme="light" label="Upload Another File" />
+          <ClearButton />
+        </div>
+      )}
+
       <button
         title="collapse the sidebar"
         className="collapse"
@@ -28,12 +36,6 @@ export const FilterBar: React.FC = () => {
       >
         <img aria-hidden="true" src={EXPAND_COLLAPSE_ICON}></img>
       </button>
-      {hasCompetencies && (
-        <div className="upload">
-          <UploadButton theme="light" label="Upload Another File" />
-          <ClearButton />
-        </div>
-      )}
     </div>
   );
 };
