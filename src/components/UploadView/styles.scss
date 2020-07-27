@@ -7,20 +7,16 @@
   justify-content: center;
   align-items: center;
 
-  input {
-    display: none;
+  h3 {
+    font-family: $header-font;
+    margin-left: 3.2rem;
+  }
+  ol {
+    font-family: $body-font;
   }
 
-  label {
-    font-family: $body-font;
-    background-color: $dark;
-    color: $light;
-    padding: 0.5rem;
-    cursor: pointer;
-
-    &:hover {
-      box-shadow: 4px 4px 0 2px $dark-shadow;
-    }
+  li {
+    padding: 1rem;
   }
 }
 

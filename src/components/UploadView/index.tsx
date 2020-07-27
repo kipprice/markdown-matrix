@@ -1,37 +1,27 @@
-import React, { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { loadFiles } from '../../thunks/load';
-import './styles.scss';
-import cx from 'classnames';
-import { selectCompetencies } from '../../selectors/competencies';
+import React from "react";
+import { useSelector } from "react-redux";
+import "./styles.scss";
+import cx from "classnames";
+import { selectHasCompetencies } from "../../selectors/competencies";
+import { UploadButton } from "../UploadButton";
 
-export type UploadViewProps = {
-    
-};
+export const UploadView: React.FC = () => {
+  const hasCompetencies = useSelector(selectHasCompetencies);
 
-export const UploadView: React.FC<UploadViewProps> = ({  }) => {
-
-    const dispatch = useDispatch();
-    const competencies = useSelector(selectCompetencies);
-    const keys = Object.keys(competencies);
-    const onFileUpload = useCallback((files: FileList | null) => {
-        if (!files) { return; }
-        if (files.length === 0) { return; }
-
-        const urls = [];
-        for (let f of files) {
-           urls.push(URL.createObjectURL(f))
-        }
-        dispatch(loadFiles(urls))
-    }, [dispatch]);
-    
-    return(
-        <div className={cx('upload', keys.length !== 0 && 'hidden')}>
-            <label className='uploadButton'>
-                Upload a Markdown File
-                <input type='file' accept='.md' onChange={(e) => onFileUpload(e.target.files)} />
-            </label>
-            
-        </div>
-    );
+  return (
+    <div className={cx("upload", hasCompetencies && "hidden")}>
+      <div className="content">
+        <h3>Getting Started</h3>
+        <ol>
+          <li>
+            Create a markdown (.md) file with H2s (## xyz) corresponding to rows
+            and H3s (### abc) corresponding to columns
+          </li>
+          <li>
+            <UploadButton />
+          </li>
+        </ol>
+      </div>
+    </div>
+  );
 };

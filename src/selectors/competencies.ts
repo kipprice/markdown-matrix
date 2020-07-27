@@ -1,5 +1,9 @@
 import { State, CompetencyId, Category, Level } from "../models";
 
+export const selectHasCompetencies = (state: State) => {
+  return Object.keys(state.competencies).length !== 0;
+};
+
 export const selectCompetency = (state: State, id: CompetencyId) => {
   return state.competencies[id];
 };
