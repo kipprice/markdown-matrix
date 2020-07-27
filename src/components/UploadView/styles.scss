@@ -1,27 +1,29 @@
+@import "../../constants.scss";
+
 .upload {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    input {
-        display: none;
-    }
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    label {
-        font-family: 'Anonymous Pro';
-        background-color: #333;
-        color: #FFF;
-        padding: 0.5rem;
-        cursor: pointer;
+  input {
+    display: none;
+  }
 
-        &:hover {
-            box-shadow: 4px 4px 0 2px #DDD;
-        }
+  label {
+    font-family: $body-font;
+    background-color: $dark;
+    color: $light;
+    padding: 0.5rem;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 4px 4px 0 2px $dark-shadow;
     }
+  }
 }
 
 .upload.hidden {
-    display: none;
+  display: none;
 }
