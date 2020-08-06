@@ -6,6 +6,7 @@ import { hiddenLevels, hiddenCategories } from "../reducers/filters";
 import { categories } from "../reducers/categories";
 import { levels } from "../reducers/levels";
 import { displayMode } from "../reducers/displayMode";
+import { similarityGraph } from '../reducers/similarityGraph';
 
 const rootReducer = combineReducers({
   categories,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   hiddenLevels,
   hiddenCategories,
   displayMode,
+  similarityGraph
 });
 
 export const store = createStore<State, any, any, any>(
