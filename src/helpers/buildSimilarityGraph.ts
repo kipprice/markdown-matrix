@@ -3,15 +3,27 @@ export type LevenshteinDiffType = 'ø' | 's' | 'd' | 'a'
 const MAX_STRING = 20;
 
 export const similarityScore = (strA: string, strB: string) => {
-    if (strA === strB) { return 100; }
-    
+    if (strA === strB) { 
+        return {
+            score: 100,
+            distance: 0,
+            differences: [],
+            splitBy: ''
+        }
+    }
+
     const splitBy = (strA.length > MAX_STRING || strB.length > MAX_STRING) ? /\W/ : '';
 
     const splitA = strA.split(splitBy);
     const splitB = strB.split(splitBy);
 
-    const { distance } = levenshteinDistance( splitA, splitB );
-    return Math.floor(100 - 100 * (( distance * 2 ) / (splitA.length + splitB.length)));
+    const { distance, differences } = levenshteinDistance( splitA, splitB );
+    return {
+        score: Math.floor(100 - 100 * (( distance * 2 ) / (splitA.length + splitB.length))),
+        distance,
+        splitBy,
+        differences
+    }
 }
 
 
@@ -149,31 +161,3 @@ const getMatrixValue = (point: number[], matrix: number[][]) => {
 
     return val;
 }
-
-
-/**
- * the way that levenshtein distances work is the following
- * if you want to find how different two strings are
- * e.g. string and slings
- * 
- *     s  t  r  i  n  g
- * s   0* 1* 2  3  4  5
- * l   1  1* 2* 3  4  5
- * i   2  2  2* 2* 3  4  
- * n   3  3  3  3  2* 3  
- * g   4  4  4  4  3  2*
- * s   4  5  5  5  4  3*
- * 
- * s l[sub] [del] i n g s[add]
- * s t[sub] r[add] i n g [del]
- * 
- *     s  t  r  i  n  g
- * s   ø  i  i  i  i  i
- * l   d  s  i  i  i  i
- * i   d  d  s  ø  i  i
- * n   d  d  d  d  ø  i  
- * g   d  d  d  d  d  ø
- * s   d  d  d  d  d  d
- * 
- * selected types = [d, ø, ø, ø, s, s, ø] or [d, ø, ø, ø, i, s, ø] or [d, ø, ø, ø, i, i, ø]
- */

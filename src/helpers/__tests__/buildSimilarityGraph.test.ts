@@ -39,19 +39,22 @@ describe('Levenshtein Distance', () => {
 
 describe('similarity score', () => {
     it('calculates for same word', () => {
-        expect(similarityScore('cat', 'cat')).toEqual(100);
+        const { score } = similarityScore('cat', 'cat');
+        expect(score).toEqual(100);
     })
 
     it('calculates for completely different words', () => {
-        expect(similarityScore('cat', 'dog')).toEqual(0);
+        const { score } = similarityScore('cat', 'dog');
+        expect(score).toEqual(0);
     })
 
     it('calculates for similar words', () => {
-        expect(similarityScore('bath', 'cats')).toEqual(50)
+        const { score } = similarityScore('bath', 'cats');
+        expect(score).toEqual(50)
     })
 
     it('calculates for longer strings', () => {
-        const score = similarityScore('this is a longer sentence than the others were', 'this is also longer than the others were')
+        const { score } = similarityScore('this is a longer sentence than the others were', 'this is also longer than the others were')
 
         expect(score).toEqual(76)
     })

@@ -18,6 +18,6 @@ export type State = {
     levels: Set<Level>;
     competencies: Record<CompetencyId, Competency>;
     
-    hiddenLevels: Set<Level>
+    hiddenLevels: Set<Level>;
     displayMode: DisplayMode;
 } 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Level, Competency } from '../../../models';
 import './styles.scss';
-import cx from 'classnames';
+import { CompetencyView } from '../../Competency';
 
 type ListItemProps = {
     level: Level;
@@ -13,9 +13,7 @@ export const ListItem = ({ competency, level }: ListItemProps) => {
 
     return (
         <div className='competency'>
-            <div className={cx('name', otherLevels.length === 0 && 'bold')}>
-                {competency.name}
-            </div>
+            <CompetencyView className={otherLevels.length === 0 ? 'bold' : ''} competency={competency} />
 
             {otherLevels.length !== 0 && 
                 <div className='levels'>
