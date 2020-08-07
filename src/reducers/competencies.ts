@@ -2,6 +2,7 @@ import { Competency, CompetencyId } from "../models";
 import type { Action } from "redux";
 
 export const ADD_COMPETENCIES = "ADD_COMPETENCIES";
+export const CLEAR_COMPETENCIES = "CLEAR_COMPETENCIES";
 
 export type CompetenciesAction = {
   type: typeof ADD_COMPETENCIES;
@@ -41,6 +42,9 @@ export const competencies = (
       }
 
       return out;
+
+    case CLEAR_COMPETENCIES:
+      return {};
     default:
       return competencies;
   }
