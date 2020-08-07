@@ -1,27 +1,41 @@
-.upload {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    input {
-        display: none;
-    }
+@import "../../constants.scss";
 
-    label {
-        font-family: 'Anonymous Pro';
-        background-color: #333;
-        color: #FFF;
-        padding: 0.5rem;
-        cursor: pointer;
+.uploadView {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-        &:hover {
-            box-shadow: 4px 4px 0 2px #DDD;
-        }
-    }
+  .content {
+    max-width: 25vw;
+    line-height: 2rem;
+    margin: 0 5rem;
+  }
+
+  h3 {
+    font-family: $header-font;
+    margin-top: 1rem;
+  }
+
+  span,
+  div {
+    font-family: $body-font;
+  }
+
+  pre {
+    text-align: left;
+    background-color: $light-theme;
+    line-height: 1rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
+
+  .postPre {
+    margin: 1rem 0;
+  }
 }
 
-.upload.hidden {
-    display: none;
+.uploadView.hidden {
+  display: none;
 }

@@ -1,18 +1,22 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { selectLevels } from '../../../selectors/levels';
-import { LevelFilter } from './LevelFilter';
-import './styles.scss';
+import React from "react";
+import { useSelector } from "react-redux";
+import { selectLevels } from "../../../selectors/levels";
+import "./styles.scss";
+import { LevelFilter } from "./LevelFilter";
 
 export const LevelFilters = () => {
-    const levels = useSelector(selectLevels);
+  const levels = useSelector(selectLevels);
 
-    return (
-        <div className='filters'>
-            <span className='label'>Visible Levels:</span>
-            {[...levels].map((l) => 
-                <LevelFilter key={`levelfilter-${l}`} level={l} />
-            )}
-        </div>
-    )
-}
+  if (levels.size === 0) {
+    return null;
+  }
+
+  return (
+    <div className="filters">
+      <span className="label">Visible Rows:</span>
+      {[...levels].map((l) => (
+        <LevelFilter key={`levelfilter-${l}`} level={l} />
+      ))}
+    </div>
+  );
+};
