@@ -3,13 +3,15 @@ import cx from 'classnames';
 import { Competency, State } from '../../models'
 import { useSelector } from 'react-redux';
 import { selectSimilarValues } from '../../selectors/similarities';
+import './styles.scss';
 
 export type CompetencyViewProps = {
     competency: Competency;
+    suffix?: string;
     className?: string;
 };
 
-export const CompetencyView: React.FC<CompetencyViewProps> = ({ competency, className }) => {
+export const CompetencyView: React.FC<CompetencyViewProps> = ({ competency, suffix, className }) => {
 
     const similarities = useSelector((state: State) => selectSimilarValues(state, competency.id));
 
@@ -24,17 +26,20 @@ export const CompetencyView: React.FC<CompetencyViewProps> = ({ competency, clas
                     const diff = differences[idx];
 
                     return (
-                        <span className={diff === 'ø' ? '' : 'diff'}>
+                        <span key={`diff-${chunk}-${competency.id}`} className={diff === 'ø' ? '' : 'diff'}>
                             {chunk + (splitBy === '' ? '' : ' ' )}
                         </span>
                     )
                 })}
+
+                {suffix && <span className='suffix'>{suffix}</span>}
             </div>
         )
     } else {
         return(
             <div className={cx('name', className)}>
-                {competency.name}
+                {competency.name} 
+                {suffix && <span className='suffix'>{suffix}</span>}
             </div>
         );
     }

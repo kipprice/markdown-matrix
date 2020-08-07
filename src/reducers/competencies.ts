@@ -24,10 +24,23 @@ export const competencies = (
   switch (action.type) {
     case ADD_COMPETENCIES:
       const compAction = action as CompetenciesAction;
-      return {
-        ...competencies,
-        ...compAction.competencies,
-      };
+
+      const out = { ...competencies };
+
+      const newComps = compAction.competencies;
+      
+      for (let cId in newComps) {
+        if (out[cId]) {
+          out[cId].levels = [ 
+            ...out[cId].levels, 
+            ...newComps[cId].levels 
+          ]
+        } else {
+          out[cId] = newComps[cId]
+        }
+      }
+
+      return out;
     default:
       return competencies;
   }

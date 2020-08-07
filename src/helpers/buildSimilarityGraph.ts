@@ -12,7 +12,7 @@ export const similarityScore = (strA: string, strB: string) => {
         }
     }
 
-    const splitBy = (strA.length > MAX_STRING || strB.length > MAX_STRING) ? /\W/ : '';
+    const splitBy = (strA.length > MAX_STRING || strB.length > MAX_STRING) ? /(?=\W)/ : '';
 
     const splitA = strA.split(splitBy);
     const splitB = strB.split(splitBy);

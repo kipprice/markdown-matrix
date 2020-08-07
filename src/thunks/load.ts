@@ -35,7 +35,6 @@ export const loadFiles = (fileUrls: string[]) => {
     }
 
     // queue up the similarity parser too
-    debugger;
     dispatch(parseSimilarities());
   };
 };

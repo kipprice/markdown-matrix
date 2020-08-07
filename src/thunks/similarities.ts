@@ -3,7 +3,7 @@ import { similarityScore } from '../helpers/buildSimilarityGraph';
 import { Dispatch } from 'redux';
 import { createSimilarityAction } from '../reducers/similarityGraph';
 
-const SIMILARITY_THRESHOLD = 70;
+const SIMILARITY_THRESHOLD = 50;
 
 export const parseSimilarities = () => {
     return async (dispatch: Dispatch<any>, getState: () => State) => {

@@ -3,6 +3,7 @@ import { Competency, Level } from "../../../models";
 import "./styles.scss";
 import cx from "classnames";
 import { EXPAND_COLLAPSE_ICON } from "../../../helpers/constants";
+import { CompetencyView } from '../../Competency';
 
 export type CompetencyBucketProps = {
   competencies: Competency[];
@@ -54,7 +55,11 @@ export const CompetencyBucket: React.FC<CompetencyBucketProps> = ({
       <ul className="hiddenCompetencies">
         {competencies.map((c) => (
           <li key={`mx-${originLevel}-${c.id}`} className="matrixCompetency">
-            {c.name} {header && ` [${c.originLevel}]`}
+            <CompetencyView 
+              key={`mx-${originLevel}-${c.id}-inner`} 
+              competency={c} 
+              suffix={header && ` [${c.originLevel}]`} 
+            />
           </li>
         ))}
       </ul>
