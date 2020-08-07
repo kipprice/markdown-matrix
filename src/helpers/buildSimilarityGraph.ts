@@ -1,6 +1,6 @@
 
 export type LevenshteinDiffType = 'ø' | 's' | 'd' | 'a'
-const MAX_STRING = 20;
+const MAX_STRING = 50;
 
 export const similarityScore = (strA: string, strB: string) => {
     if (strA === strB) { 
