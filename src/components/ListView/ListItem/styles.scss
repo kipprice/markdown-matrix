@@ -17,21 +17,12 @@
     opacity: 1;
   }
 
-  .category,
-  .levels {
-    margin-top: 0.5rem;
-    font-size: 0.8rem;
-    display: none;
-    position: absolute;
-    background-color: $light;
-    border-radius: 10px;
-    box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.2);
-    padding: 0.5rem;
-  }
-
   &:hover .levels {
     display: block;
-    z-index: 5;
+
+    li {
+      font-weight: bold;
+    }
   }
 
 }

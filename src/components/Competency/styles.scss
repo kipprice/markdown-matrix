@@ -1,10 +1,13 @@
 @import '../../constants.scss';
 
-.diff {
-    font-weight: bold;
-    color: $dark-theme;
-}
-
 .suffix {
     opacity: 0.5;
+}
+
+.name {
+    position: relative;
+}
+
+.name:hover .hover {
+    display: block;
 }

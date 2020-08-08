@@ -9,6 +9,7 @@ import { UploadButton } from "../UploadButton";
 import { useSelector } from "react-redux";
 import { selectHasCompetencies } from "../../selectors/competencies";
 import { ClearButton } from "./ClearButton";
+import { DiffToggle } from './DiffToggle';
 
 export const FilterBar: React.FC = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -21,6 +22,7 @@ export const FilterBar: React.FC = () => {
       <DisplayModeFilter />
       <LevelFilters />
       <CategoryFilters />
+      <DiffToggle />
 
       {hasCompetencies && (
         <div className="upload">

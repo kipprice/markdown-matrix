@@ -3,24 +3,26 @@ import { Competency, Level } from "../../../models";
 import "./styles.scss";
 import cx from "classnames";
 import { EXPAND_COLLAPSE_ICON } from "../../../helpers/constants";
-import { CompetencyView } from '../../Competency';
+import { MatrixItem } from '../MatrixItem';
 
 export type CompetencyBucketProps = {
   competencies: Competency[];
   level: Level;
-  originLevel: Level;
+  origin: 'other' | 'similar' | Level;
   opacity: number;
 };
 
 export const CompetencyBucket: React.FC<CompetencyBucketProps> = ({
   competencies,
   level,
-  originLevel,
+  origin,
   opacity,
 }) => {
-  const header =
-    level === originLevel ? "" : `${competencies.length} from previous levels`;
-  const [isExpanded, setIsExpanded] = useState(originLevel === level);
+  
+  const header = getHeader(origin, level, competencies.length);
+  const showHeader = (origin === 'other');
+
+  const [isExpanded, setIsExpanded] = useState(origin !== 'other');
 
   const onClick = useCallback(() => {
     setIsExpanded(!isExpanded);
@@ -41,7 +43,7 @@ export const CompetencyBucket: React.FC<CompetencyBucketProps> = ({
       className={cx("competencyBucket", !isExpanded && "collapsed")}
       style={{ opacity }}
     >
-      {header && (
+      {showHeader && (
         <div
           className="header"
           onClick={onClick}
@@ -54,15 +56,23 @@ export const CompetencyBucket: React.FC<CompetencyBucketProps> = ({
       )}
       <ul className="hiddenCompetencies">
         {competencies.map((c) => (
-          <li key={`mx-${originLevel}-${c.id}`} className="matrixCompetency">
-            <CompetencyView 
-              key={`mx-${originLevel}-${c.id}-inner`} 
-              competency={c} 
-              suffix={header && ` [${c.originLevel}]`} 
-            />
-          </li>
+          <MatrixItem competency={c} level={level} origin={origin} />
         ))}
       </ul>
     </div>
   );
 };
+
+
+const getHeader = (origin: 'similar' | 'other' | Level, level: Level, length: number) => {
+  switch (origin) {
+    case 'similar':
+      return `${length} similar to other competencies`;
+
+    case 'other':
+      return `${length} from previous levels`;
+
+    default:
+      return level;
+  }
+}

@@ -1,0 +1,29 @@
+@import "../../../constants.scss";
+
+.toggle {
+    margin: 1rem;
+    padding: 0;
+    
+
+    input {
+        display: none;
+    }
+    
+    label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .fakeCheck {
+        width: 0.5rem;
+        height: 0.5rem;
+        border: 0.25rem solid $light;
+        background-color: $light;
+        margin-right: 0.5rem;
+    }
+
+    input:checked + .fakeCheck {
+        background-color: $dark;
+    }
+}

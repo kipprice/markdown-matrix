@@ -13,7 +13,7 @@ export const parseSimilarities = () => {
         const allPomises = []
         for (let c of allCompetencyKeys) {
             allPomises.push(wait(0).then(() => {
-                return findSimilarities(c, allCompetencyKeys)
+                return findSimilarities(c, competencies)
             }))
         }
         const results = await Promise.all(allPomises);
@@ -28,14 +28,15 @@ export const parseSimilarities = () => {
     }
 }
 
-const findSimilarities = (value: CompetencyId, allCompetencies: CompetencyId[]) => {
+const findSimilarities = (value: CompetencyId, competencies: Record<CompetencyId, Competency>) => {
     const out = [];
 
-    for (let c of allCompetencies) {
+    const keys = Object.keys(competencies);
+    for (let c of keys) {
         const { score, differences, splitBy } = similarityScore(value, c);
         if (score < SIMILARITY_THRESHOLD || score === 100) { continue; }
 
-        out.push({ value: c, score, differences, splitBy })
+        out.push({ value: competencies[c], score, differences, splitBy })
     }
 
     return { value, similarities: out};
