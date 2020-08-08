@@ -1,11 +1,18 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
-import { State } from "../models";
 import thunk from "redux-thunk";
-import { competencies } from "../reducers/competencies";
-import { hiddenLevels, hiddenCategories } from "../reducers/filters";
-import { categories } from "../reducers/categories";
-import { levels } from "../reducers/levels";
-import { displayMode } from "../reducers/displayMode";
+
+import { State } from "../models";
+import { 
+  competencies, 
+  hiddenCategories, 
+  hiddenLevels, 
+  categories, 
+  levels, 
+  displayMode, 
+  similarityGraph ,
+  enableDiffs
+} from "../reducers";
+
 
 const rootReducer = combineReducers({
   categories,
@@ -14,6 +21,8 @@ const rootReducer = combineReducers({
   hiddenLevels,
   hiddenCategories,
   displayMode,
+  similarityGraph,
+  enableDiffs,
 });
 
 export const store = createStore<State, any, any, any>(

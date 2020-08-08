@@ -1,37 +1,50 @@
-import React, { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { loadFiles } from '../../thunks/load';
-import './styles.scss';
-import cx from 'classnames';
-import { selectCompetencies } from '../../selectors/competencies';
+import React from "react";
+import { useSelector } from "react-redux";
+import "./styles.scss";
+import cx from "classnames";
+import { selectHasCompetencies } from "../../selectors/competencies";
+import { UploadButton } from "../UploadButton";
 
-export type UploadViewProps = {
-    
-};
+export const UploadView: React.FC = () => {
+  const hasCompetencies = useSelector(selectHasCompetencies);
 
-export const UploadView: React.FC<UploadViewProps> = ({  }) => {
+  return (
+    <div className={cx("uploadView", hasCompetencies && "hidden")}>
+      <UploadButton label="Upload File(s)" />
+      <div className="content">
+        <h3>First Time Here?</h3>
+        <span>This tool takes in markdown (*.md) files in the format of:</span>
+        {/* prettier-ignore */}
+        <pre>{`
+# [Header of file]
 
-    const dispatch = useDispatch();
-    const competencies = useSelector(selectCompetencies);
-    const keys = Object.keys(competencies);
-    const onFileUpload = useCallback((files: FileList | null) => {
-        if (!files) { return; }
-        if (files.length === 0) { return; }
+[optional description]
 
-        const urls = [];
-        for (let f of files) {
-           urls.push(URL.createObjectURL(f))
-        }
-        dispatch(loadFiles(urls))
-    }, [dispatch]);
-    
-    return(
-        <div className={cx('upload', keys.length !== 0 && 'hidden')}>
-            <label className='uploadButton'>
-                Upload a Markdown File
-                <input type='file' accept='.md' onChange={(e) => onFileUpload(e.target.files)} />
-            </label>
-            
+## [Row Name 1]
+
+### [Column Name A]
+
+- item for row 1 and column A
+- another item for row 1 and column A
+
+### [Column Name B]
+
+- the only item for row 1 and column B
+
+## [Row Name 2]
+
+### [Column Name A]
+
+- item for row 2 and column A
+- another item for row 2 and column A
+
+...
+          `}</pre>
+        <div className="postPre">
+          This format will be turned into a matrix view with the corresponding
+          headers being converted to row and column names.
         </div>
-    );
+      </div>
+    </div>
+  );
 };

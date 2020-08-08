@@ -5,7 +5,8 @@ import { useSelector } from "react-redux";
 import { bucketBySpecificLevel } from "../../../helpers/bucketer";
 import { CompetencyBucket } from "../CompetencyBucket";
 import "./styles.scss";
-import { getLevelOpacity } from "../../../helpers/colors";
+import { getOpacity } from "../../../helpers/colors";
+import { selectSimilarityGraph } from '../../../selectors/similarities';
 
 export type MatrixCellProps = {
   category: Category;
@@ -16,8 +17,9 @@ export const MatrixCell: React.FC<MatrixCellProps> = ({ category, level }) => {
   const competencies = useSelector((s: State) =>
     selectCompetenciesForLevelAndCategory(s, level, category)
   );
+  const similarityGraph = useSelector(selectSimilarityGraph);
 
-  const buckets = bucketBySpecificLevel(competencies, level);
+  const buckets = bucketBySpecificLevel(competencies, level, similarityGraph);
 
   return (
     <div className="matrixCompetencies">
@@ -25,11 +27,11 @@ export const MatrixCell: React.FC<MatrixCellProps> = ({ category, level }) => {
         if (!b) {
           return null;
         }
-        const opacity = getLevelOpacity(b.originLevel);
+        const opacity = getOpacity(b.origin);
         return (
           <CompetencyBucket
             {...b}
-            key={`bucket-${category}-${level}-${b.originLevel}`}
+            key={`bucket-${category}-${level}-${b.origin}`}
             level={level}
             opacity={opacity}
           />

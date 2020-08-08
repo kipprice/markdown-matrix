@@ -2,6 +2,7 @@ import { Competency, CompetencyId } from "../models";
 import type { Action } from "redux";
 
 export const ADD_COMPETENCIES = "ADD_COMPETENCIES";
+export const CLEAR_COMPETENCIES = "CLEAR_COMPETENCIES";
 
 export type CompetenciesAction = {
   type: typeof ADD_COMPETENCIES;
@@ -24,10 +25,26 @@ export const competencies = (
   switch (action.type) {
     case ADD_COMPETENCIES:
       const compAction = action as CompetenciesAction;
-      return {
-        ...competencies,
-        ...compAction.competencies,
-      };
+
+      const out = { ...competencies };
+
+      const newComps = compAction.competencies;
+      
+      for (let cId in newComps) {
+        if (out[cId]) {
+          out[cId].levels = [ 
+            ...out[cId].levels, 
+            ...newComps[cId].levels 
+          ]
+        } else {
+          out[cId] = newComps[cId]
+        }
+      }
+
+      return out;
+
+    case CLEAR_COMPETENCIES:
+      return {};
     default:
       return competencies;
   }

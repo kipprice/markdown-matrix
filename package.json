@@ -4,8 +4,8 @@
   "description": "turns a markdown file into a matrix",
   "author": "Kip Price",
   "license": "MIT",
-  "main": "dist/bundle.js",
-  "module": "dist/bundle.js",
+  "main": "dist/bundle",
+  "module": "dist/bundle",
   "types": "typings/index",
   "scripts": {
     "start": "webpack-dev-server --open",

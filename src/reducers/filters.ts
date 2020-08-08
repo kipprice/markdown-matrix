@@ -4,8 +4,10 @@ import type { Action } from "redux";
 export const HIDE_LEVEL = "HIDE_LEVEL";
 export const SHOW_LEVEL = "SHOW_LEVEL";
 export const TOGGLE_LEVEL = "TOGGLE_LEVEL";
+export const CLEAR_LEVEL_FILTERS = "CLEAR_LEVEL_FILTERS";
 
 export const TOGGLE_CATEGORY = "TOGGLE_CATEGORY";
+export const CLEAR_CATEGORY_FILTERS = "CLEAR_LEVEL_FILTERS";
 
 export type LevelFilterAction = {
   type:
@@ -53,6 +55,8 @@ export const hiddenLevels = (
       return showLevel(hiddenLevels, (action as LevelFilterAction).level);
     case TOGGLE_LEVEL:
       return toggleLevel(hiddenLevels, (action as LevelFilterAction).level);
+    case CLEAR_LEVEL_FILTERS:
+      return new Set();
     default:
       return hiddenLevels;
   }
@@ -68,6 +72,8 @@ export const hiddenCategories = (
         hiddenCategories,
         (action as CategoryFilterAction).category
       );
+    case CLEAR_CATEGORY_FILTERS:
+      return new Set();
     default:
       return hiddenCategories;
   }
