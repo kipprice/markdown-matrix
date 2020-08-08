@@ -37,7 +37,7 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: "Commit"
-      run: git ci -a -m "update build"
+      run: git commit -a -m "update build"
 
     - name: "Deploy"
       run: git push
