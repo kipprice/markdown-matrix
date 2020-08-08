@@ -3,3 +3,5 @@ export * from './competencies';
 export * from './displayMode';
 export * from './filters';
 export * from './levels';
+export * from './similarityGraph';
+export * from './enableDiffs';

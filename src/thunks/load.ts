@@ -9,6 +9,7 @@ import {
   createFilterAction,
 } from "../reducers";
 import type { Dispatch } from "react";
+import { parseSimilarities } from './similarities';
 
 
 const parseFileIntoState = (fileContents: string, dispatch: Dispatch<any>, hideByDefault?: boolean) => {
@@ -22,6 +23,7 @@ const parseFileIntoState = (fileContents: string, dispatch: Dispatch<any>, hideB
   for (let l of parsed.levels) {
     dispatch(createFilterAction(l, 'HIDE_LEVEL'));
   }
+
 }
 
 export const loadFiles = (fileUrls: string[]) => {
@@ -32,5 +34,7 @@ export const loadFiles = (fileUrls: string[]) => {
       parseFileIntoState(loaded, dispatch)
     }
 
+    // queue up the similarity parser too
+    dispatch(parseSimilarities());
   };
 };

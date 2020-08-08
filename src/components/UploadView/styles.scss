@@ -1,29 +1,41 @@
 @import "../../constants.scss";
 
-.upload {
+.uploadView {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  input {
-    display: none;
+  .content {
+    max-width: 25vw;
+    line-height: 2rem;
+    margin: 0 5rem;
   }
 
-  label {
-    font-family: $body-font;
-    background-color: $dark;
-    color: $light;
-    padding: 0.5rem;
-    cursor: pointer;
+  h3 {
+    font-family: $header-font;
+    margin-top: 1rem;
+  }
 
-    &:hover {
-      box-shadow: 4px 4px 0 2px $dark-shadow;
-    }
+  span,
+  div {
+    font-family: $body-font;
+  }
+
+  pre {
+    text-align: left;
+    background-color: $light-theme;
+    line-height: 1rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
+
+  .postPre {
+    margin: 1rem 0;
   }
 }
 
-.upload.hidden {
+.uploadView.hidden {
   display: none;
 }

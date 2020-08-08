@@ -1,7 +1,11 @@
 import React from 'react';
-import { Level, Competency } from '../../../models';
+import { Level, Competency, State } from '../../../models';
 import './styles.scss';
-import cx from 'classnames';
+import { CompetencyView } from '../../Competency';
+import { Hover } from '../..//Hover';
+import { useSelector } from 'react-redux';
+import { selectSimilarValues } from '../../../selectors/similarities';
+import { Diff } from '../../Diff';
 
 type ListItemProps = {
     level: Level;
@@ -9,23 +13,44 @@ type ListItemProps = {
 }
 
 export const ListItem = ({ competency, level }: ListItemProps) => {
+    const similarities = useSelector((state: State) => selectSimilarValues(state, competency.id));
+
     const otherLevels = competency.levels.filter((l) => l !== level );
 
+    const showBubble = !!(otherLevels.length || similarities?.length)
+    
     return (
         <div className='competency'>
-            <div className={cx('name', otherLevels.length === 0 && 'bold')}>
-                {competency.name}
-            </div>
+            <CompetencyView className={otherLevels.length === 0 ? 'bold' : ''} competency={competency} />
 
-            {otherLevels.length !== 0 && 
-                <div className='levels'>
+            {showBubble &&
+                <Hover className='levels'>
+                {otherLevels.length !== 0 && (
+                    <>
                     <div>Also in:</div>
                     <ul>
                         {otherLevels.map((l) => 
                             <li key={`${competency.id}-${l}`}>{l}</li>
                         )}
                     </ul>
-                </div>
+                    </>
+                )}
+
+                {similarities && similarities?.length !== 0 && 
+                    <>
+                        <div>Similar to values in:</div>
+                        <ul>
+                            {similarities.map((s) => 
+                                <li key={`${competency.id}-${s.value.id}-sim`}>
+                                    {s.value.originLevel}
+                                    <div className='diffView'><Diff name={s.value.name} similarities={[s]} /></div>
+                                </li>
+                            )}
+                        </ul>
+                    </>
+                }
+
+                </Hover>
             }
         </div>
     )

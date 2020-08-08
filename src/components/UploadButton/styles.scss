@@ -1,0 +1,30 @@
+@import "../../constants.scss";
+
+label.uploadButton {
+  font-family: $body-font;
+  border-radius: 5px;
+  padding: 0.5rem;
+  cursor: pointer;
+
+  &.light {
+    background-color: $light;
+    color: $dark;
+
+    &:hover {
+      box-shadow: 4px 4px 0 1px $light-shadow;
+    }
+  }
+
+  &.dark {
+    background-color: $dark;
+    color: $light;
+
+    &:hover {
+      box-shadow: 4px 4px 0 2px $dark-shadow;
+    }
+  }
+
+  input {
+    display: none;
+  }
+}

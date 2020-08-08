@@ -1,0 +1,28 @@
+@import "../../constants.scss";
+
+.hover {
+    background-color: $light-theme;
+    padding: 1rem;
+    border-radius: 2px;
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    box-shadow: 4px 4px 0 1px $dark-shadow;
+    z-index: 10;
+    border: 1px solid $dark;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+
+    li {
+        font-weight: bold;
+
+        .diffView {
+            margin-top: 0.25rem;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+            font-weight: normal;
+        }
+    }
+}

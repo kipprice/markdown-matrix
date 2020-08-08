@@ -13,11 +13,22 @@ export type Competency = {
     originLevel: Level;
 }
 
+export type Similarity = {
+    value: Competency;
+    score: number;
+    differences: string[];
+    splitBy: string | RegExp;
+}
+
 export type State = {
     categories: Set<Category>;
     levels: Set<Level>;
     competencies: Record<CompetencyId, Competency>;
     
-    hiddenLevels: Set<Level>
+    hiddenLevels: Set<Level>;
+    hiddenCategories: Set<Category>;
     displayMode: DisplayMode;
+    enableDiffs: boolean;
+
+    similarityGraph: Record<CompetencyId, Similarity[]>
 } 
