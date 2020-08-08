@@ -30,13 +30,14 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-
+    - name: "Install dependencies"
+      run: npm install
+    - name: "Create bundle"
+      run: npm run build
 
     # Runs a single command using the runners shell
-    - name: Build the bundle 
-      run: |
-        npm install,
-        npm run build,
-        git add -A,
-        git ci -m "update build",
-        git push
+    - name: "Commit"
+      run: git ci -a -m "update build"
+
+    - name: "Deploy"
+      run: git push
