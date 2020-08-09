@@ -22,22 +22,27 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+      with:
+        persist-credentials: false
 
     # setup npm 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+
     - name: "Install dependencies"
       run: npm install
+
     - name: "Create bundle"
       run: npm run build
 
     # Runs a single command using the runners shell
-    - name: "Commit"
-      run: git commit -a -m "update build"
-
-    - name: "Deploy"
-      run: git push
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.PUSH_TOKEN }}
+        branch: 'main'
