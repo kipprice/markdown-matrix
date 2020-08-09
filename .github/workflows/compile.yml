@@ -40,6 +40,13 @@ jobs:
     - name: "Create bundle"
       run: npm run build
 
+    # Add the files to git
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "update build" -a
+
     # Runs a single command using the runners shell
     - name: Push changes
       uses: ad-m/github-push-action@master
