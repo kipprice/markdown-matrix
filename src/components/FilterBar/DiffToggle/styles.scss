@@ -21,6 +21,7 @@
         border: 0.25rem solid $light;
         background-color: $light;
         margin-right: 0.5rem;
+        border-radius: 3px;
     }
 
     input:checked + .fakeCheck {
