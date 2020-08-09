@@ -47,10 +47,4 @@ jobs:
         git config --local user.name "GitHub Action"
         git add dist
         git commit -m "update build" -a
-
-    # Runs a single command using the runners shell
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.PUSH_TOKEN }}
-        branch: 'main'
+        git push
