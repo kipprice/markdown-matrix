@@ -1,9 +1,11 @@
-import { ListGroupProps } from "..";
-import React, { useCallback, KeyboardEvent } from "react";
+import React, { KeyboardEvent, useCallback } from "react";
+import styled from '@emotion/styled';
 import { useDispatch } from "react-redux";
+import { ListGroupProps } from "..";
+import EXPAND_COLLAPSE_ICON from '../../../../../res/down_caret.png';
+import EX_ICON from '../../../../../res/ex.png';
 import { createHiddenRowsAction } from "../../../../reducers";
-import "./styles.scss";
-import { EXPAND_COLLAPSE_ICON, EX_ICON } from "../../../../helpers/constants";
+import { fontFamilies } from '../../../../helpers/styles';
 
 export type ListGroupHeaderProps = ListGroupProps & {
   onExpandCollapse: () => void;
@@ -36,30 +38,8 @@ export const ListGroupHeader = ({
     ></img>
   );
 
-  if (column) {
-    return (
-      <span
-        tabIndex={0}
-        className="colName"
-        onClick={onExpandCollapse}
-        onKeyDown={onKeyDown}
-      >
-        {collapseIcon}
-        <h3>{column}</h3>
-      </span>
-    );
-  }
-
-  return (
-    <span
-      tabIndex={0}
-      className="colName"
-      onClick={onExpandCollapse}
-      onKeyDown={onKeyDown}
-    >
-      {collapseIcon}
-      <h2>{row}</h2>
-      <img
+  const exIcon = (
+    <img
         className="ex"
         alt={`hide the ${row} group`}
         src={EX_ICON}
@@ -68,6 +48,47 @@ export const ListGroupHeader = ({
           e.stopPropagation();
         }}
       ></img>
-    </span>
-  );
-};
+  )
+
+  const headerType = column ? 'h3' : 'h2';
+  const StyledHeader = styled[headerType]`
+    margin: 0;
+    padding: 0;
+  `;
+
+  return (
+    <StyledColumn
+      f={fontFamilies}
+      tabIndex={0}
+      className='colName'
+      onClick={onExpandCollapse}
+      onKeyDown={onKeyDown}
+    >
+      {collapseIcon}
+      <StyledHeader>{column || row}</StyledHeader>
+      {!column && exIcon}
+    </StyledColumn>
+  )
+}
+
+const StyledColumn = styled.span<{f: typeof fontFamilies }>`
+  margin: 1rem;
+  font-family: ${p => p.f.headerFont};
+  font-size: 0.9em;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-left: -1.2em;
+
+  img {
+    width: 1.5em;
+    height: 1.5em;
+    transform: rotate(180deg);
+    transform-origin: 50% 50%;
+  }
+
+  img.ex {
+    margin-top: 5px;
+  }
+`;

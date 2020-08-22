@@ -1,7 +1,7 @@
 import React from "react";
+import styled from '@emotion/styled';
 import { useSelector } from "react-redux";
 import { selectRows } from "../../selectors/rows";
-import "./styles.scss";
 import { selectDisplayMode } from "../../selectors/filters";
 import { ListGroup } from "./ListGroup";
 
@@ -14,10 +14,19 @@ export const ListView: React.FC = () => {
   }
 
   return (
-    <div className="list">
+    <StyledList>
       {[...rows].map((l) => (
         <ListGroup key={l} row={l} />
       ))}
-    </div>
+    </StyledList>
   );
 };
+
+const StyledList = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2em;
+  width: 100%;
+  overflow-y: auto;
+`;

@@ -6,8 +6,11 @@ module.exports = {
   
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
-    libraryTarget: 'commonjs2',
+    publicPath: '/dist/',
+    filename: "index.js",
+    library: 'react-markdown-to-matrix',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
 
   module: {
@@ -37,11 +40,51 @@ module.exports = {
           "sass-loader",
         ],
       },
+
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+              {
+                  loader: 'url-loader',
+                  options:{
+                      fallback: "file-loader",
+                      name: "[name][md5:hash].[ext]",
+                      outputPath: 'res/',
+                      publicPath: '/res/'
+                  }
+              }
+          ]
+      },
     ],
   },
 
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
+    alias: {          
+      'react': path.resolve(__dirname, './node_modules/react'),
+      'react-dom': path.resolve(__dirname, './node_modules/react-dom'),  
+      'react-redux': path.resolve(__dirname, './node_modules/react-redux'),  
+      'res': path.resolve(__dirname, "res")    
+    }  
+  },
+
+  externals: {
+    react: {          
+      commonjs: "react",          
+      commonjs2: "react",          
+      amd: "React",          
+      root: "React"      
+    },
+    "react-dom": {          
+        commonjs: "react-dom",          
+        commonjs2: "react-dom",          
+        amd: "ReactDOM",          
+        root: "ReactDOM"      
+    },
+    "react-redux": {
+      commonjs: "react-redux",
+      commonjs2: "react-redux"
+    }
   },
 
   plugins: []

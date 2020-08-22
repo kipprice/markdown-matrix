@@ -4,7 +4,6 @@ import { selectRows, selectHiddenRows } from "../../../selectors";
 import { Filters } from '../Filters';
 import { createHiddenRowsAction } from '../../../reducers';
 import { RowName } from '../../../models';
-import "./styles.scss";
 
 export const RowFilters = () => {
   const rows = useSelector(selectRows);

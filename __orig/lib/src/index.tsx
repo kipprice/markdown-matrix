@@ -9,7 +9,7 @@ export type MarkdownToMatrixProps = {
     title: string;
     subtitle: string;
     fileUrls?: string[];
-    theme?: Theme,
+    customTheme?: Theme,
     defaultMode?: DisplayMode,
 }
 

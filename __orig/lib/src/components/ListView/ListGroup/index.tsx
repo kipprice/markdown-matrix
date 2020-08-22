@@ -1,13 +1,11 @@
+import { css } from '@emotion/core';
+import styled from '@emotion/styled';
 import React, { useCallback, useState } from "react";
-import { ColumnName, RowName, State } from "../../../models";
-import cx from "classnames";
-import "./styles.scss";
 import { useSelector } from "react-redux";
+import { ColumnName, RowName, State } from "../../../models";
 import {
-  selectRowVisibility,
-  selectRowAndColumnVisibility,
   selectColumns,
-  selectElementsForRowAndColumn,
+  selectElementsForRowAndColumn, selectRowAndColumnVisibility, selectRowVisibility
 } from "../../../selectors";
 import { ListItem } from "../ListItem";
 import { ListGroupHeader } from "./ListGroupHeader";
@@ -36,12 +34,9 @@ export const ListGroup = ({ row, column }: ListGroupProps) => {
   }, [isExpanded]);
 
   return (
-    <div
-      className={cx(
-        "column",
-        (!isRowVisible || (column && !isColumnVisible)) && "hidden",
-        !isExpanded && "collapsed"
-      )}
+    <StyledColumn
+      collapsed={!isExpanded}
+      hidden={!isRowVisible || (!!column && !isColumnVisible)}
     >
       {/** header */}
       <ListGroupHeader
@@ -68,6 +63,28 @@ export const ListGroup = ({ row, column }: ListGroupProps) => {
               />
             ))}
       </span>
-    </div>
+    </StyledColumn>
   );
 };
+
+const StyledColumn = styled.div<{ hidden: boolean; collapsed: boolean }>`
+  font-size: 0.9em;
+  width: 50vw;
+  margin-bottom: 1em;
+  ${p => p.hidden && hiddenCss}
+  ${p => p.collapsed && collapsedCss}
+`;
+
+const hiddenCss = css`
+  display: none;
+`;
+
+const collapsedCss = css`
+  .colName img {
+    transform: rotate(0deg);
+  }
+
+  .groupChildren {
+    display: none;
+  }
+`;

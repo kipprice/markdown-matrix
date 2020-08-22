@@ -4,7 +4,8 @@ import { ColumnName, RowName, State } from "../../../models";
 import { selectElementsForRowAndColumn } from "../../../selectors";
 import { bucketBySpecificRow, getOpacity } from "../../../helpers";
 import { CompetencyBucket } from "../CompetencyBucket";
-import "./styles.scss";
+import styled from '@emotion/styled';
+import { fontFamilies } from '../../../helpers/styles';
 
 export type MatrixCellProps = {
   column: ColumnName;
@@ -19,7 +20,7 @@ export const MatrixCell: React.FC<MatrixCellProps> = ({ column, row }) => {
   const buckets = bucketBySpecificRow(elements, row);
 
   return (
-    <div className="matrixCompetencies">
+    <StyledMatrixCell f={fontFamilies}>
       {buckets.map((b) => {
         if (!b) {
           return null;
@@ -34,6 +35,14 @@ export const MatrixCell: React.FC<MatrixCellProps> = ({ column, row }) => {
           />
         );
       })}
-    </div>
+    </StyledMatrixCell>
   );
 };
+
+const StyledMatrixCell = styled.div<{f: typeof fontFamilies}>`
+  font-family: ${p => p.f.bodyFont};
+  margin: 0;
+  padding: 0;
+  padding-left: 1rem;
+  padding-top: 0.25rem;
+`;

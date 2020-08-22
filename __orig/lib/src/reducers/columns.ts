@@ -9,10 +9,10 @@ export type ColumnAction = {
   type: typeof ADD_COLUMNS;
 };
 
-export const createCategoryAction = (categories: Set<ColumnName>) => {
+export const createColumnsAction = (columns: Set<ColumnName>) => {
   return {
     type: ADD_COLUMNS,
-    categories,
+    columns,
   };
 };
 

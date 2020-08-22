@@ -4,7 +4,8 @@ import { DisplayMode } from "../../../models";
 import { useDispatch, useSelector } from "react-redux";
 import { selectDisplayMode } from "../../../selectors/filters";
 import { createDisplayModeAction } from "../../../reducers";
-import "./styles.scss";
+import styled from '@emotion/styled';
+import { colors } from '../../../helpers/styles';
 
 type DisplayModeSwitchProps = {
   label: string;
@@ -43,7 +44,7 @@ export const DisplayModeFilter = () => {
   }, []);
 
   return (
-    <div className="displayModes">
+    <StyledDisplayModes c={colors}>
       <span className="label">View As:</span>
       <DisplayModeSwitch
         label="Matrix"
@@ -55,6 +56,28 @@ export const DisplayModeFilter = () => {
         isSelected={currentMode === "list"}
         onClick={() => selectMode("list")}
       />
-    </div>
+    </StyledDisplayModes>
   );
 };
+
+const StyledDisplayModes = styled.div<{c: typeof colors}>`
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  .displayMode {
+    cursor: pointer;
+    width: auto;
+    border-radius: 5px;
+    padding: 0.1rem 0.25rem;
+
+    &:not(.selected) {
+      opacity: 0.5;
+    }
+
+    &.selected {
+      background-color: ${p => p.c.light};
+      color: ${p => p.c.dark};
+    }
+  }
+`;

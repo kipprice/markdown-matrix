@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./styles.scss";
 import { selectColumns } from "../../../selectors/columns";
 import { selectHiddenColumns } from '../../../selectors';
 import { Filters } from '../Filters';

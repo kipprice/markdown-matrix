@@ -4,7 +4,7 @@ import {
 import { parseFile } from "../helpers/parseFile";
 import {
   createRowsAction,
-  createCategoryAction,
+  createColumnsAction,
   createElementsAction,
   createHiddenRowsAction, 
 } from "../reducers";
@@ -23,7 +23,7 @@ const parseFileIntoState = (fileContents: string, dispatch: Dispatch<any>, hideB
 
   // send a message about the newly loaded data
   dispatch(createRowsAction(parsed.rows));
-  dispatch(createCategoryAction(parsed.columns));
+  dispatch(createColumnsAction(parsed.columns));
   dispatch(createElementsAction(parsed.elements));
 
   // if we are hiding these elements, hide the rows

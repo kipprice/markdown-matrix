@@ -1,8 +1,10 @@
+/* @jsx jsx */
 import React, { useCallback, KeyboardEvent } from "react";
+import styled from '@emotion/styled';
+import { css, jsx } from '@emotion/core';
 import { useDispatch } from "react-redux";
 import { loadFiles } from "../../thunks/load";
-import "./styles.scss";
-import cx from "classnames";
+import { colors, fontFamilies } from '../../helpers/styles';
 
 export type UploadButtonProps = {
   theme?: "light" | "dark";
@@ -41,18 +43,52 @@ export const UploadButton: React.FC<UploadButtonProps> = ({
   };
 
   return (
-    <label
-      className={cx("uploadButton", theme)}
+    <StyledUploadLabel
+      c={colors}
+      f={fontFamilies}
+      colorTheme={theme}
       tabIndex={0}
       onKeyDown={onKeyDown}
     >
       {label}
-      <input
+      <HiddenInput
         multiple
         type="file"
         accept=".md"
         onChange={(e) => onFileUpload(e.target.files)}
       />
-    </label>
+    </StyledUploadLabel>
   );
 };
+
+const StyledUploadLabel = styled.label<{colorTheme: 'dark' | 'light', f: typeof fontFamilies, c: typeof colors}>`
+  font-family: ${p => p.f.bodyFont};
+  border-radius: 5px;
+  padding: 0.5rem;
+  cursor: pointer;
+  text-align: center;
+  
+  ${p => p.colorTheme === 'light' ? lightCss(p.c) : darkCss(p.c)}
+`;
+
+const HiddenInput = styled.input`
+  display: none;
+`;
+
+const lightCss = (c: typeof colors) => css`
+  background-color: ${c.light};
+  color: ${c.dark};
+
+  &:hover {
+    box-shadow: 4px 4px 0 1px ${c.light}22;
+  }
+`;
+
+const darkCss = (c: typeof colors) => css`
+    background-color: ${c.dark};
+    color: ${c.light};
+
+    &:hover {
+      box-shadow: 4px 4px 0 2px ${c.dark}22;
+    }
+`;

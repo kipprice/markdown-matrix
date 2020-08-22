@@ -1,11 +1,12 @@
+import styled from '@emotion/styled';
 import React from 'react';
-import { RowName, Element, State } from '../../../models';
-import './styles.scss';
-import { ElementName } from '../../ElementName';
-import { Hover } from '../..//Hover';
 import { useSelector } from 'react-redux';
+import { Element, RowName, State } from '../../../models';
 import { selectSimilarElements } from '../../../selectors';
+import { Hover } from '../..//Hover';
 import { Diff } from '../../Diff';
+import { ElementName } from '../../ElementName';
+import { fontFamilies, colors } from '../../../helpers/styles';
 
 type ListItemProps = {
     row: RowName;
@@ -20,8 +21,8 @@ export const ListItem = ({ element, row }: ListItemProps) => {
     const showBubble = !!(otherRows.length || similarities?.length)
     
     return (
-        <div className='competency'>
-            <ElementName className={otherRows.length === 0 ? 'bold' : ''} element={element} />
+        <StyledCompetency c={colors} f={fontFamilies}>
+            <ElementName subtle={otherRows.length > 0} element={element} />
 
             {/* hover bubble for the list item */}
             {showBubble &&
@@ -53,6 +54,25 @@ export const ListItem = ({ element, row }: ListItemProps) => {
 
                 </Hover>
             }
-        </div>
+        </StyledCompetency>
     )
 }
+
+
+
+const StyledCompetency = styled.div<{ c: typeof colors, f: typeof fontFamilies}>`
+    padding: 0.5rem;
+    margin: 0.5rem;
+    font-size: 0.6em;
+    border-top: 1px solid ${p => p.c.lightTheme};
+    font-family: ${p => p.f.bodyFont};
+    position: relative;
+
+    &:hover .hover {
+    display: block;
+
+    li {
+      font-weight: bold;
+    }
+  }
+`;

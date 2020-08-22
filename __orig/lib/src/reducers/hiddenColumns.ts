@@ -11,7 +11,7 @@ export type HiddenColumnsAction = {
 
 export const createHiddenColumnsAction = (column: ColumnName) => {
     return {
-        TOGGLE_COLUMN,
+        type: TOGGLE_COLUMN,
         column
     };
 };

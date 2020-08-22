@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import styled from '@emotion/styled';
 import { useDispatch } from 'react-redux';
 import { FilterBar } from "./components/FilterBar";
 import { ListView } from "./components/ListView";
@@ -6,15 +7,15 @@ import { MatrixView } from "./components/MatrixView";
 import { UploadView } from './components/UploadView';
 import { loadFiles } from './thunks/load';
 import { createDisplayModeAction } from './reducers';
-import "./App.scss";
 import { MarkdownToMatrixProps } from 'index';
+import { colors, fontFamilies } from './helpers/styles';
 
 export const App: React.FC<MarkdownToMatrixProps> = ({
   enabledOptions = ['filters', 'displayMode'],
   title,
   subtitle, 
   fileUrls,
-  theme,
+  customTheme,
   defaultMode
 }) => {
 
@@ -33,16 +34,31 @@ export const App: React.FC<MarkdownToMatrixProps> = ({
     });
   }
 
-  if (theme) {
-    // TODO: store the theme information in redux
+  console.log(JSON.stringify(customTheme))
+  if (customTheme) {
+    colors.dark = customTheme.dark || colors.dark;
+    colors.darkTheme = customTheme.darkTheme || colors.darkTheme;
+    colors.light = customTheme.light || colors.light;
+    colors.lightTheme = customTheme.lightTheme || colors.lightTheme;
+    
+    fontFamilies.bodyFont = customTheme.bodyFont || fontFamilies.bodyFont;
+    fontFamilies.headerFont = customTheme.headerFont || fontFamilies.headerFont;
   }
 
   return (
-    <div className="layout">
+    <StyledLayout>
       <FilterBar title={title} subtitle={subtitle} enabledOptions={enabledOptions} />
       <ListView />
       <MatrixView />
       {allowUpload && <UploadView />}
-    </div>
+    </StyledLayout>
   );
 }
+
+const StyledLayout = styled.div`
+  display: flex;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+`;

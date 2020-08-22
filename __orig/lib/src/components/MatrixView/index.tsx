@@ -1,5 +1,5 @@
 import React from "react";
-import cx from "classnames";
+import styled from '@emotion/styled';
 import { useSelector } from "react-redux";
 import { 
   selectDisplayMode, 
@@ -8,7 +8,7 @@ import {
 } from "../../selectors";
 import { MatrixLabel } from "./MatrixLabel";
 import { MatrixCell } from "./MatrixCell";
-import "./styles.scss";
+import { fontFamilies } from '../../helpers/styles';
 
 export const MatrixView: React.FC = () => {
   const curDisplayMode = useSelector(selectDisplayMode);
@@ -18,13 +18,13 @@ export const MatrixView: React.FC = () => {
   const children = [<span key="empty" className="empty" />];
   for (let col of columns) {
     children.push(
-      <MatrixLabel key={`matrixlabel-${col}`} label={col} className="top" />
+      <MatrixLabel key={`matrixlabel-${col}`} label={col} type="top" />
     );
   }
 
   for (let row of rows) {
     children.push(
-      <MatrixLabel key={`matrixlabel-${row}`} label={row} className="left" />
+      <MatrixLabel key={`matrixlabel-${row}`} label={row} type="left" />
     );
 
     for (let col of columns) {
@@ -35,13 +35,20 @@ export const MatrixView: React.FC = () => {
   }
 
   return (
-    <div
-      className={cx(curDisplayMode === "matrix" ? "matrix" : "hidden")}
-      style={{
-        gridTemplateColumns: `minmax(2rem, 10rem) repeat(${columns.length}, 1fr)`,
-      }}
-    >
+    <StyledMatrix numColumns={columns.length} hidden={curDisplayMode !== 'matrix'} f={fontFamilies}>
       {children}
-    </div>
+    </StyledMatrix>
   );
 };
+
+const StyledMatrix = styled.div<{ numColumns: number, hidden: boolean, f: typeof fontFamilies }>`
+  font-family: ${p => p.f.headerFont};
+  font-size: 2em;
+  display: ${p => p.hidden ? 'none' : 'grid'};
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  row-gap: 2rem;
+  grid-auto-rows: max-content;
+  grid-template-columns: ${p => `minmax(2rem, 10rem) repeat(${p.numColumns}, 1fr)`};
+`;
