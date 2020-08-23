@@ -2,7 +2,7 @@ import { Theme } from '../models';
 
 export const colors = {
     light: '#ffffff',
-    dark: '#10162f',
+    dark: '#000019',
     darkTheme: '#10162f',
     lightTheme: '#F0F0F5',
 }
@@ -40,8 +40,10 @@ const parseLightMode = (customTheme: Theme) => {
 const parseDarkMode = (customTheme: Theme) => {
     isDarkMode = true;
 
-    colors.dark = customTheme.light || colors.light;
-    colors.darkTheme = customTheme.darkTheme || colors.darkTheme;
-    colors.lightTheme = customTheme.lightTheme || colors.lightTheme;
-    colors.light = customTheme.dark || colors.dark;
+    const curColors = {...colors}
+
+    colors.dark = customTheme.light || curColors.light;
+    colors.darkTheme = customTheme.darkTheme || curColors.darkTheme;
+    colors.lightTheme = customTheme.lightTheme || curColors.lightTheme;
+    colors.light = customTheme.dark || curColors.dark;
 }
