@@ -1,6 +1,6 @@
 {
   "name": "react-markdown-to-matrix",
-  "version": "0.0.5",
+  "version": "1.0.1",
   "description": "converts markdown files of a standard format into an interactive matrix view",
   "author": "Kip Price",
   "license": "MIT",
@@ -66,8 +66,8 @@
     "@emotion/styled": "^10.0.27",
     "@toolkip/server": "^2.4.0",
     "classnames": "^2.2.6",
-    "redux": "^4.0.5",
     "react-redux": "^7.2.1",
+    "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
   }
 }
