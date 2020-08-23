@@ -35,17 +35,30 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: "Install dependencies"
-      run: npm install
+      run: |
+        cd lib
+        npm install
+        cd ..
+        cd docs
+        npm install
+        cd ..
 
     - name: "Create bundle"
-      run: npm run build
+      run: |
+        cd lib
+        npm run build
+        cd ..
+        cd docs
+        npm run build
+        cd ..
 
     # Add the files to git
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add dist
+        git add lib/dist
+        git add docs/dist
         git commit -m "update build" -a
 
     # Runs a single command using the runners shell
