@@ -37,7 +37,7 @@ There are a variety of configuration options available within the MarkdownToMatr
 | `subtitle`        | string            | Optional | The subtitle to display in the sidebar                                     |
 | `fileUrls`        | string[]          | Optional | If provided, the files to preload into the matrix view                     |
 | `customTheme`     | Theme             | Optional | Style overrides for colors and fonts                                       |
-| `defaultMode`     | 'matrix' | 'list' | Optional | What view mode to start with; defaults to 'matrix'                         |
+| `defaultMode`     | 'matrix' or 'list' | Optional | What view mode to start with; defaults to 'matrix'                         |
 | `renderHtml`      | boolean           | Optional | Set to true to render inline HTML within the loaded markdown               |
 | `excludeHeaders`  | string[]          | Optional | Any H2s / H3s that shouldn't be parsed into headers can be specified here  |
 
