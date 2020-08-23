@@ -3,6 +3,7 @@ import { Element, RowName } from "../../../models";
 import styled from '@emotion/styled';
 import EXPAND_COLLAPSE_ICON from '../../../../res/down_caret.png';
 import { MatrixItem } from '../MatrixItem';
+import { isDarkMode } from '../../../helpers/styles';
 
 export type CompetencyBucketProps = {
   competencies: Element[];
@@ -39,6 +40,7 @@ export const CompetencyBucket: React.FC<CompetencyBucketProps> = ({
 
   return (
     <StyledBucket
+      isDarkMode={isDarkMode}
       className={!isExpanded ? "collapsed" : ""}
       style={{ opacity }}
     >
@@ -74,7 +76,7 @@ const getHeader = (origin: 'other' | RowName, row: RowName, length: number) => {
   }
 }
 
-const StyledBucket = styled.div`
+const StyledBucket = styled.div<{isDarkMode: boolean}>`
   font-size: 0.9rem;
   border: none;
 
@@ -89,6 +91,7 @@ const StyledBucket = styled.div`
       margin-right: 0.25rem;
       transform-origin: 50% 50%;
       transform: rotate(180deg);
+      filter: ${p => p.isDarkMode ? 'invert(1)' : 'incert(0)'}
     }
   }
 

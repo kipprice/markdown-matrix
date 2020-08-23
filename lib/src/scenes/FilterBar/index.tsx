@@ -71,9 +71,9 @@ export const FilterBar: React.FC<FilterBarProps> = ({ title, subtitle, enabledOp
 
 const StyledFilterBar = styled.div<{ c: typeof colors, f: typeof fontFamilies }>`
   height: 100%;
-  background-color: ${p => p.c.dark};
+  background-color: ${p => p.c.darkTheme};
+  color: ${p => p.c.lightTheme};
   font-family: ${p => p.f.bodyFont};
-  color: ${p => p.c.light};
   display: flex;
   flex-direction: column;
   position: relative;
@@ -126,12 +126,11 @@ const StyledFilterBar = styled.div<{ c: typeof colors, f: typeof fontFamilies }>
     height: 3rem;
     border-radius: 50%;
     border: none;
-    background-color: ${p => p.c.dark};
+    background-color: ${p => p.c.darkTheme};
     position: absolute;
     left: calc(100% - 1.5rem);
     top: -1px;
     cursor: pointer;
-    //box-shadow: 0 0 0 3px ${p => p.c.light};
 
     &:focus,
     &:hover {

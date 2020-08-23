@@ -20,8 +20,7 @@ export const App: React.FC = () => {
 
             /** make sure to use longform hex values here; otherwise the drop shadows won't work well */
             customTheme={{
-                lightTheme: '#eeeeee',
-
+                lightTheme: '#F0F0F5',
                 headerFont: 'Open Sans',
                 bodyFont: 'Anonymous Pro'
             }}

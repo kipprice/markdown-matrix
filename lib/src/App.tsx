@@ -8,7 +8,7 @@ import { UploadView } from './scenes/UploadView';
 import { loadFiles } from './thunks/load';
 import { createDisplayModeAction, createEnableRenderHtmlAction } from './reducers';
 import { MarkdownToMatrixProps } from 'index';
-import { colors, fontFamilies } from './helpers/styles';
+import { colors, parseCustomTheme } from './helpers/styles';
 import { EXCLUDE_HEADERS } from './helpers/matcher';
 
 export const App: React.FC<MarkdownToMatrixProps> = ({
@@ -52,17 +52,11 @@ export const App: React.FC<MarkdownToMatrixProps> = ({
   }
 
   if (customTheme) {
-    colors.dark = customTheme.dark || colors.dark;
-    colors.darkTheme = customTheme.darkTheme || colors.darkTheme;
-    colors.light = customTheme.light || colors.light;
-    colors.lightTheme = customTheme.lightTheme || colors.lightTheme;
-    
-    fontFamilies.bodyFont = customTheme.bodyFont || fontFamilies.bodyFont;
-    fontFamilies.headerFont = customTheme.headerFont || fontFamilies.headerFont;
+    parseCustomTheme(customTheme);
   }
 
   return (
-    <StyledLayout>
+    <StyledLayout c={colors}>
       <FilterBar title={title} subtitle={subtitle} enabledOptions={enabledOptions} />
       <ListView />
       <MatrixView />
@@ -71,10 +65,11 @@ export const App: React.FC<MarkdownToMatrixProps> = ({
   );
 }
 
-const StyledLayout = styled.div`
+const StyledLayout = styled.div<{ c: typeof colors }>`
   display: flex;
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
+  color: ${p => p.c.dark}
 `;

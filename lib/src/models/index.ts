@@ -6,6 +6,9 @@ export type OptionType = 'upload' | 'filters' | 'diff' | 'displayMode';
 
 export type Theme = {
 
+    /** if true, reverses the standard ways colors are used */
+    isDarkMode?: boolean;
+
     /** the primary background color to use for light areas of the application */
     light?: string;
 

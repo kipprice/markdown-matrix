@@ -47,5 +47,5 @@ export const Diff: React.FC<DiffProps> = ({ name, similarities }) => {
 const StyledDiff = styled.span<{ c: typeof colors }>`
     font-weight: bold;
     background-color: ${p => p.c.dark};
-    color: ${colors.light};
+    color: ${p => p.c.light};
 `;

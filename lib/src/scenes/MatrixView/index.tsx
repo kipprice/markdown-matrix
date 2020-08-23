@@ -8,7 +8,7 @@ import {
 } from "../../selectors";
 import { MatrixLabel } from "./MatrixLabel";
 import { MatrixCell } from "./MatrixCell";
-import { fontFamilies } from '../../helpers/styles';
+import { fontFamilies, colors } from '../../helpers/styles';
 
 export const MatrixView: React.FC = () => {
   const curDisplayMode = useSelector(selectDisplayMode);
@@ -35,13 +35,18 @@ export const MatrixView: React.FC = () => {
   }
 
   return (
-    <StyledMatrix numColumns={columns.length} hidden={curDisplayMode !== 'matrix'} f={fontFamilies}>
+    <StyledMatrix 
+      numColumns={columns.length} 
+      hidden={curDisplayMode !== 'matrix'} 
+      f={fontFamilies}
+      c={colors}
+    >
       {children}
     </StyledMatrix>
   );
 };
 
-const StyledMatrix = styled.div<{ numColumns: number, hidden: boolean, f: typeof fontFamilies }>`
+const StyledMatrix = styled.div<{ numColumns: number, hidden: boolean, f: typeof fontFamilies, c: typeof colors }>`
   font-family: ${p => p.f.headerFont};
   font-size: 2em;
   display: ${p => p.hidden ? 'none' : 'grid'};
@@ -51,4 +56,5 @@ const StyledMatrix = styled.div<{ numColumns: number, hidden: boolean, f: typeof
   row-gap: 2rem;
   grid-auto-rows: max-content;
   grid-template-columns: ${p => `minmax(2rem, 10rem) repeat(${p.numColumns}, 1fr)`};
+  background-color: ${p => p.c.light};
 `;

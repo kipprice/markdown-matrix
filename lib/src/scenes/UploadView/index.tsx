@@ -9,7 +9,7 @@ export const UploadView: React.FC = () => {
   const hasCompetencies = useSelector(selectHasElements);
 
   return (
-    <StyledUploadView className={hasCompetencies ? "hidden" : ""}>
+    <StyledUploadView c={colors} className={hasCompetencies ? "hidden" : ""}>
       <UploadButton label="Upload File(s)" />
       <StyledContent f={fontFamilies} className="content">
         <StyledH3 f={fontFamilies}>First Time Here?</StyledH3>
@@ -51,12 +51,13 @@ export const UploadView: React.FC = () => {
 };
 
 
-const StyledUploadView = styled.div`
+const StyledUploadView = styled.div<{ c: typeof colors}>`
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${p => p.c.light};
 
   &.hidden {
     display: none;
@@ -83,6 +84,7 @@ const StyledPre = styled.pre<{ c: typeof colors, f: typeof fontFamilies }>`
   text-align: left;
   font-family: ${p => p.f.bodyFont};
   background-color: ${p => p.c.lightTheme};
+  color: ${p => p.c.darkTheme};
   line-height: 1rem;
   padding: 0 1rem;
   box-sizing: border-box;

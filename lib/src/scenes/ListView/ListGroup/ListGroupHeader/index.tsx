@@ -5,7 +5,7 @@ import { ListGroupProps } from "..";
 import EXPAND_COLLAPSE_ICON from '../../../../../res/down_caret.png';
 import EX_ICON from '../../../../../res/ex.png';
 import { createHiddenRowsAction } from "../../../../reducers";
-import { fontFamilies } from '../../../../helpers/styles';
+import { fontFamilies, isDarkMode } from '../../../../helpers/styles';
 
 export type ListGroupHeaderProps = ListGroupProps & {
   onExpandCollapse: () => void;
@@ -58,6 +58,7 @@ export const ListGroupHeader = ({
 
   return (
     <StyledColumn
+      isDarkMode={isDarkMode}
       f={fontFamilies}
       tabIndex={0}
       className='colName'
@@ -71,7 +72,7 @@ export const ListGroupHeader = ({
   )
 }
 
-const StyledColumn = styled.span<{f: typeof fontFamilies }>`
+const StyledColumn = styled.span<{f: typeof fontFamilies, isDarkMode: boolean }>`
   margin: 1rem;
   font-family: ${p => p.f.headerFont};
   font-size: 0.9em;
@@ -86,6 +87,7 @@ const StyledColumn = styled.span<{f: typeof fontFamilies }>`
     height: 1.5em;
     transform: rotate(180deg);
     transform-origin: 50% 50%;
+    filter: ${p => p.isDarkMode ? 'invert(1)' : 'invert(0)'}
   }
 
   img.ex {

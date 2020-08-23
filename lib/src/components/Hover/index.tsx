@@ -16,6 +16,7 @@ export const Hover: React.FC<HoverProps> = ({ children, className }) => {
 
 const StyledHover = styled.div<{ c: typeof colors }>`
     background-color: ${p => p.c.lightTheme};
+    color: ${p => p.c.darkTheme};
     padding: 1rem;
     border-radius: 3px;
     display: none;
@@ -24,7 +25,7 @@ const StyledHover = styled.div<{ c: typeof colors }>`
     top: 100%;
     box-shadow: 4px 4px 0 1px ${p => p.c.dark}22;
     z-index: 10;
-    border: 1px solid ${p => p.c.dark};
+    border: 1px solid ${p => p.c.darkTheme};
     margin-top: 0.5rem;
     font-size: 0.8rem;
     padding: 0.5rem;
