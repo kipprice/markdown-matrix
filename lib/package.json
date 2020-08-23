@@ -7,6 +7,12 @@
   "main": "dist/",
   "module": "dist/",
   "types": "typings/src/index.d.ts",
+  "files":[
+    "/dist",
+    "/typings",
+    "/res",
+    "/package.json"
+  ],
   "scripts": {
     "clean": "rm -rf ./dist && rm -rf ./typings",
     "build": "yarn build:tsc && yarn build:webpack",
