@@ -7,12 +7,20 @@
   "main": "dist/",
   "module": "dist/",
   "types": "typings/src/index.d.ts",
+  "homepage": "https://github.com/kipprice/markdown-matrix",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/kipprice/markdown-matrix.git"
+  },
+
   "files": [
     "/dist",
     "/typings",
     "/res",
-    "/package.json"
+    "/package.json",
+    "/README.md"
   ],
+
   "scripts": {
     "clean": "rm -rf ./dist && rm -rf ./typings",
     "build": "yarn build:tsc && yarn build:webpack",
