@@ -4,15 +4,19 @@ import { store } from './store';
 import { OptionType, Theme, DisplayMode } from './models';
 import { App } from './App';
 
+
 export type MarkdownToMatrixProps = {
 
     /** 
      * the options to allow within this instance of the markdown-to-matrix component
      * 
      *  'upload'        - allows users to upload a file to render the matrix view with
+     * 
      *  'filters'       - allows the user to choose what's visible within the matrix
+     * 
      *  'diff'          - allows users to toggle a diff view of elements within the 
      *                    matrix
+     * 
      *  'displayMode'   - allows users to toggle to a list instead of a matrix
      * 
     */
@@ -33,13 +37,19 @@ export type MarkdownToMatrixProps = {
      * 
      * (see Theme for details on what can be themed) 
      */
-    customTheme?: Theme,
+    customTheme?: Theme;
 
     /** the default display mode to use for the document */
-    defaultMode?: DisplayMode,
+    defaultMode?: DisplayMode;
 
     /** if true, will render inline HTML from the markdown file */
-    renderHtml?: boolean
+    renderHtml?: boolean;
+
+    /** 
+     * if there are any headers in your markdown file that shouldn't become 
+     * columns or rows, add them to this list
+     */
+    excludeHeaders?: string[];
 }
 
 export const MarkdownToMatrix: React.FC<MarkdownToMatrixProps> = (props) => {

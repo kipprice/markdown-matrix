@@ -9,6 +9,7 @@ import { loadFiles } from './thunks/load';
 import { createDisplayModeAction, createEnableRenderHtmlAction } from './reducers';
 import { MarkdownToMatrixProps } from 'index';
 import { colors, fontFamilies } from './helpers/styles';
+import { EXCLUDE_HEADERS } from './helpers/matcher';
 
 export const App: React.FC<MarkdownToMatrixProps> = ({
   enabledOptions = ['filters', 'displayMode'],
@@ -18,6 +19,7 @@ export const App: React.FC<MarkdownToMatrixProps> = ({
   customTheme,
   defaultMode,
   renderHtml,
+  excludeHeaders
 }) => {
 
   const allowUpload = enabledOptions.includes('upload');
@@ -39,6 +41,14 @@ export const App: React.FC<MarkdownToMatrixProps> = ({
     useEffect(() => {
       dispatch(createEnableRenderHtmlAction());
     });
+  }
+
+  if (excludeHeaders) {
+    useEffect(() => {
+      for (let exHead of excludeHeaders) {
+        EXCLUDE_HEADERS.push(exHead);
+      }
+    })
   }
 
   if (customTheme) {

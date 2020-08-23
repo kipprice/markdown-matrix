@@ -7,22 +7,22 @@ export type OptionType = 'upload' | 'filters' | 'diff' | 'displayMode';
 export type Theme = {
 
     /** the primary background color to use for light areas of the application */
-    light: string;
+    light?: string;
 
     /** the primary background color to use for dark areas of the application */
-    dark: string;
+    dark?: string;
 
     /** the accent color to use on light backgrounds */
-    darkTheme: string;
+    darkTheme?: string;
 
     /** the accent color to use on dark backgrounds */
-    lightTheme: string;
+    lightTheme?: string;
     
     /** the font family to use for all header text */
-    headerFont: string;
+    headerFont?: string;
 
     /** the font family to use for all body text */
-    bodyFont: string;
+    bodyFont?: string;
 };
 
 export type ElementId = string;

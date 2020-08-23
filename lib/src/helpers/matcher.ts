@@ -1,4 +1,4 @@
-const EXCLUDE_HEADERS: string[] = ["FAQ"];
+export const EXCLUDE_HEADERS: string[] = [];
 const LEVEL_REGEX = /^\s*?##\s*?([\w &/]+)\s*?$/;
 const CATEGORY_REGEX = /^\s*?###\s*?(.+)$/;
 const COMPETENCY_REGEX = /^\s*?[*-]\s*?(.+)$/;

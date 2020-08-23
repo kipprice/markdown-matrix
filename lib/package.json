@@ -8,11 +8,12 @@
   "module": "dist/",
   "types": "typings/src/index.d.ts",
   "scripts": {
+    "clean": "rm -rf ./dist && rm -rf ./typings",
     "build": "yarn build:tsc && yarn build:webpack",
     "build:webpack": "webpack",
     "build:tsc": "tsc -p tsconfig.json",
     "test": "npx jest -- -t .test.ts",
-    "prepack": "rm -rf ./dist && rm -rf ./typings && yarn build"
+    "prepack": "yarn clean && yarn build"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",
