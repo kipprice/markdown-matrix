@@ -13,7 +13,7 @@ compile_app() {
     echo ""
     echo "==> Installing app folder"
 
-    cd app
+    cd docs
     yarn install
     cd ..
 }
@@ -23,7 +23,7 @@ link_for_dev() {
     echo "==> Symlinking folders"
 
     path=$PWD
-    node_module_path="$path/app/node_modules/react-markdown-to-matrix/"
+    node_module_path="$path/docs/node_modules/react-markdown-to-matrix/"
 
     rm -rf $node_module_path
     mkdir $node_module_path

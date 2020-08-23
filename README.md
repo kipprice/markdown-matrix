@@ -16,5 +16,5 @@ If you're interested in embedding this tool into an app of your own, you can get
 1. Clone the repo
 1. Run `sh setup.sh --dev` in the root folder (assumes UNIX-based system)
 1. Open a new terminal to the `lib` folder and run `yarn build -w`
-1. Open a new terminal to the `app` folder and run `yarn start`
+1. Open a new terminal to the `docs` folder and run `yarn start`
 1. Go to localhost:5050 to see the app in action
