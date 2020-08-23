@@ -23,10 +23,10 @@ export type MarkdownToMatrixProps = {
     enabledOptions: OptionType[];
 
     /** the title to render within the component */
-    title: string;
+    title?: string;
 
     /** the subtitle to render within the component */
-    subtitle: string;
+    subtitle?: string;
 
     /** if provided, loads the specified file URLs by default */
     fileUrls?: string[];

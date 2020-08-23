@@ -29,6 +29,7 @@ const StyledList = styled.div<{c: typeof colors}>`
   align-items: center;
   font-size: 2em;
   width: 100%;
+  height: 100vh;
   overflow-y: auto;
   background-color: ${p => p.c.light};
 `;

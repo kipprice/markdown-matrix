@@ -51,7 +51,7 @@ const StyledMatrix = styled.div<{ numColumns: number, hidden: boolean, f: typeof
   font-size: 2em;
   display: ${p => p.hidden ? 'none' : 'grid'};
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow-y: auto;
   row-gap: 2rem;
   grid-auto-rows: max-content;

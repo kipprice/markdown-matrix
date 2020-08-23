@@ -70,7 +70,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ title, subtitle, enabledOp
 };
 
 const StyledFilterBar = styled.div<{ c: typeof colors, f: typeof fontFamilies }>`
-  height: 100%;
+  height: 100vh;
   background-color: ${p => p.c.darkTheme};
   color: ${p => p.c.lightTheme};
   font-family: ${p => p.f.bodyFont};

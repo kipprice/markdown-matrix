@@ -2,14 +2,7 @@
 
 This library creates an embeddable React application that will transform a specified markdown file into a matrix form, with H2s being turned into rows and H3s turned into columns. This also looks for differences between items and optionally highlights those differences.
 
-## Developing in this repo
-1. Clone the repo
-1. Run `sh setup.sh --dev` in the root folder (assumes UNIX-based system)
-1. Open a new terminal to the `lib` folder and run `yarn build -w`
-1. Open a new terminal to the `docs` folder and run `yarn start`
-1. Go to localhost:5050 to see the app in action
-
-## Developing with the Library
+## Installation
 Run `yarn add react-markdown-to-matrix` or `npm install react-markdown-matrix` to add to an existing React app.
 
 You will then be able to use the `<MarkdownToMatrix>` component:
@@ -67,4 +60,3 @@ You can update a variety of aspects about how the app displays through the prope
 
 ## Source
 The source for this library is avilable at [github.com/kipprice/markdown-matrix](http://github.com/kipprice/markdown-matrix). You can see a working version of this library at [kipprice.github.io/markdown-matrix](https://kipprice.github.io/markdown-matrix).
-

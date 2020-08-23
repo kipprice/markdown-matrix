@@ -57,7 +57,7 @@ export const App: React.FC<MarkdownToMatrixProps> = ({
 
   return (
     <StyledLayout c={colors}>
-      <FilterBar title={title} subtitle={subtitle} enabledOptions={enabledOptions} />
+      <FilterBar title={title || ''} subtitle={subtitle || ''} enabledOptions={enabledOptions} />
       <ListView />
       <MatrixView />
       {allowUpload && <UploadView />}
