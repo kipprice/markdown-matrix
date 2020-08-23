@@ -10,6 +10,7 @@ import {
 } from "../reducers";
 import type { Dispatch } from "react";
 import { parseSimilarities } from './similarities';
+import { FileUrl } from 'index';
 
 
 /**
@@ -41,12 +42,15 @@ const parseFileIntoState = (fileContents: string, dispatch: Dispatch<any>, hideB
  * thunk that loads in all files specified and renders them onto the matrix
  * viewer. Can be called from file input or from manual call
  */
-export const loadFiles = (fileUrls: string[]) => {
+export const loadFiles = (fileUrls: (string | FileUrl)[]) => {
   return async (dispatch: Dispatch<any>) => {
     
     for (let fileUrl of fileUrls) {
-      const loaded = await loadFile(fileUrl);
-      parseFileIntoState(loaded, dispatch)
+      const url = (typeof fileUrl === 'string') ? fileUrl : fileUrl.url;
+      const hideByDefault = (typeof fileUrl === 'string') ? false : fileUrl.hideByDefault;
+      
+      const loaded = await loadFile(url);
+      parseFileIntoState(loaded, dispatch, hideByDefault)
     }
 
     // queue up the similarity parser too

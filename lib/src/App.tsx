@@ -27,7 +27,9 @@ export const App: React.FC<MarkdownToMatrixProps> = ({
   // load files if any were provided
   const dispatch = useDispatch();
   if (fileUrls && fileUrls.length > 0) {
-    dispatch(loadFiles(fileUrls));
+    useEffect(() => {
+      dispatch(loadFiles(fileUrls));
+    }, [fileUrls])
   }
 
   // set the default mode

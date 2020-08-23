@@ -4,6 +4,10 @@ import { store } from './store';
 import { OptionType, Theme, DisplayMode } from './models';
 import { App } from './App';
 
+export type FileUrl = {
+    url: string;
+    hideByDefault?: boolean;
+}
 
 export type MarkdownToMatrixProps = {
 
@@ -29,7 +33,7 @@ export type MarkdownToMatrixProps = {
     subtitle?: string;
 
     /** if provided, loads the specified file URLs by default */
-    fileUrls?: string[];
+    fileUrls?: (string | FileUrl)[];
 
     /** 
      * if provided, overrides the default theming for the application with the 

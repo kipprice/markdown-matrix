@@ -13,7 +13,7 @@ export const App: React.FC = () => {
             
             // uncomment to auto-load a file into the app
             // (this is required if no options are provided)
-            //fileUrls={["../tester.md"]}
+            //fileUrls={["../tester.md", { url: "../secondary.md", hideByDefault: true }]}
             
             // if the markdown file has embedded HTML, default to showing it
             renderHtml={true}
