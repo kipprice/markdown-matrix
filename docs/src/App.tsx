@@ -1,5 +1,6 @@
 import React from 'react';
 import { MarkdownToMatrix } from 'react-markdown-to-matrix';
+import { Wrapper } from './Wrapper';
 
 export const App: React.FC = () => {
     return(
@@ -26,6 +27,9 @@ export const App: React.FC = () => {
             }}
             
             excludeHeaders={['FAQ']}
+
+            // uncomment to turn this into a checklist
+            //wrapperElement={Wrapper}
         />
     );
 };

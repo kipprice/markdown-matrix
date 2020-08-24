@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import { OptionType, Theme, DisplayMode } from './models';
 import { App } from './App';
+import { ElementWrapperProps } from './components/ElementWrapper';
 
 export type FileUrl = {
     url: string;
@@ -54,6 +55,12 @@ export type MarkdownToMatrixProps = {
      * columns or rows, add them to this list
      */
     excludeHeaders?: string[];
+
+    /**
+     * if provided, wraps all elements in the matrix and list view with the 
+     * provided element. Must pass through children without manipulation
+     */
+    wrapperElement?: React.FC<ElementWrapperProps>;
 }
 
 export const MarkdownToMatrix: React.FC<MarkdownToMatrixProps> = (props) => {

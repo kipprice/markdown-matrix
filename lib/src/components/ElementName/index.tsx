@@ -4,6 +4,7 @@ import { Element, State } from '../../models'
 import { useSelector } from 'react-redux';
 import { selectSimilarElements } from '../../selectors/similarities';
 import { Diff } from '../Diff';
+import { ElementWrapper } from '../../components/ElementWrapper';
 
 export type ElementNameProps = {
     subtle?: boolean;
@@ -12,13 +13,17 @@ export type ElementNameProps = {
     className?: string;
 };
 
-export const ElementName: React.FC<ElementNameProps> = ({ element: competency, suffix, className, subtle }) => {
-    const similarities = useSelector((state: State) => selectSimilarElements(state, competency.id));
+export const ElementName: React.FC<ElementNameProps> = ({ element, suffix, className, subtle }) => {
+    const similarities = useSelector((state: State) => selectSimilarElements(state, element.id));
 
     return (
         <StyledName className={className} subtle={subtle}>
-            <Diff name={competency.name} similarities={similarities} />
-            {suffix && <StyledSuffix>{suffix}</StyledSuffix>}
+
+            <ElementWrapper content={element.name}>
+                <Diff name={element.name} similarities={similarities} />
+                {suffix && <StyledSuffix>{suffix}</StyledSuffix>}
+            </ElementWrapper>
+
         </StyledName>
     );
 };

@@ -10,6 +10,7 @@ import { createDisplayModeAction, createEnableRenderHtmlAction } from './reducer
 import { MarkdownToMatrixProps } from 'index';
 import { colors, parseCustomTheme } from './helpers/styles';
 import { EXCLUDE_HEADERS } from './helpers/matcher';
+import { config } from './helpers/config';
 
 export const App: React.FC<MarkdownToMatrixProps> = ({
   enabledOptions = ['filters', 'displayMode'],
@@ -19,7 +20,8 @@ export const App: React.FC<MarkdownToMatrixProps> = ({
   customTheme,
   defaultMode,
   renderHtml,
-  excludeHeaders
+  excludeHeaders,
+  wrapperElement
 }) => {
 
   const allowUpload = enabledOptions.includes('upload');
@@ -55,6 +57,10 @@ export const App: React.FC<MarkdownToMatrixProps> = ({
 
   if (customTheme) {
     parseCustomTheme(customTheme);
+  }
+
+  if (wrapperElement) {
+    config.wrapper = wrapperElement;
   }
 
   return (
