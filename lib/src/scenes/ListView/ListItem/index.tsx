@@ -20,7 +20,7 @@ export const ListItem = ({ element, row }: ListItemProps) => {
     
     return (
         <StyledCompetency c={colors} f={fontFamilies}>
-            <ElementName subtle={otherRows.length > 0} element={element} />
+            <ElementName subtle={otherRows.length > 0} element={element} context={{ currentRow: row }} />
 
             {/* hover bubble for the list item */}
             {showBubble &&

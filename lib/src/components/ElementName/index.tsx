@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Element, State } from '../../models'
+import { Context, Element, State } from '../../models'
 import { useSelector } from 'react-redux';
 import { selectSimilarElements } from '../../selectors/similarities';
 import { Diff } from '../Diff';
@@ -11,15 +11,16 @@ export type ElementNameProps = {
     element: Element;
     suffix?: string;
     className?: string;
+    context: Context;
 };
 
-export const ElementName: React.FC<ElementNameProps> = ({ element, suffix, className, subtle }) => {
+export const ElementName: React.FC<ElementNameProps> = ({ element, suffix, className, subtle, context }) => {
     const similarities = useSelector((state: State) => selectSimilarElements(state, element.id));
 
     return (
         <StyledName className={className} subtle={subtle}>
 
-            <ElementWrapper content={element.name}>
+            <ElementWrapper content={element.name} element={element} context={context} >
                 <Diff name={element.name} similarities={similarities} />
                 {suffix && <StyledSuffix>{suffix}</StyledSuffix>}
             </ElementWrapper>

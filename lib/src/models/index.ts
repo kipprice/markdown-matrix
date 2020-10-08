@@ -58,3 +58,7 @@ export type State = {
 
     similarityGraph: Record<ElementId, Similarity[]>
 } 
+
+export type Context = {
+    currentRow?: RowName;
+}

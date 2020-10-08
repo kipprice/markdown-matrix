@@ -21,6 +21,7 @@ export const MatrixItem: React.FC<MatrixItemProps> = ({ element, row, origin }) 
               key={`mx-${row}-${origin}-${element.id}-inner`} 
               element={element} 
               suffix={getSuffix(origin, element)} 
+              context={{ currentRow: row }}
             />
 
             {similarities && similarities.length > 0 && 

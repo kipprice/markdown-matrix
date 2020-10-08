@@ -70,3 +70,6 @@ export const MarkdownToMatrix: React.FC<MarkdownToMatrixProps> = (props) => {
         </Provider>
     )
 }
+
+// additional exports
+export { ElementWrapperProps };

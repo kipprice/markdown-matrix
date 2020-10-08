@@ -1,8 +1,11 @@
 import React from 'react';
 import { config } from '../../helpers/config';
+import { Context, Element } from '../../models';
 
 export type ElementWrapperProps = {
     content: string;
+    element: Element;
+    context: Context;
 };
 
 export const ElementWrapper: React.FC<ElementWrapperProps> = ({ children, content, ...props }) => {

@@ -29,7 +29,7 @@ export const App: React.FC = () => {
             excludeHeaders={['FAQ']}
 
             // uncomment to turn this into a checklist
-            //wrapperElement={Wrapper}
+            // wrapperElement={Wrapper}
         />
     );
 };
