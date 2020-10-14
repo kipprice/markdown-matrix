@@ -1,6 +1,7 @@
 import { ColumnName, RowName } from '../../../models';
 import React from 'react';
 import styled from '@emotion/styled';
+import { HeadingWrapper } from '../../../components';
 
 export type MatrixLabelProps = {
     label: RowName | ColumnName;
@@ -8,7 +9,11 @@ export type MatrixLabelProps = {
 }
 
 export const MatrixLabel = ({ label, type }: MatrixLabelProps) => {
-    return <StyledMatrixLabel type={type}>{label}</StyledMatrixLabel>
+    return (<StyledMatrixLabel type={type}>
+        <HeadingWrapper as='h2' mode='matrix' text={label} type={type === 'left' ? 'row' : 'column'}>
+            {label}
+        </HeadingWrapper>
+    </StyledMatrixLabel>)
 }
 
 const StyledMatrixLabel = styled.div<{ type: 'top' | 'left'}>`

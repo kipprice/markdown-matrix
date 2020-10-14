@@ -1,7 +1,8 @@
-import { ElementWrapperProps } from '../components/ElementWrapper';
+import { ElementWrapperProps, HeadingWrapperProps } from '../components';
 
 export type Config = {
-    wrapper?: React.FC<ElementWrapperProps>
+    wrapper?: React.FC<ElementWrapperProps>;
+    headingWrapper?: React.FC<HeadingWrapperProps>;
 }
 
 export const config: Config  = {}

@@ -4,6 +4,7 @@ import { store } from './store';
 import { OptionType, Theme, DisplayMode } from './models';
 import { App } from './App';
 import { ElementWrapperProps } from './components/ElementWrapper';
+import { HeadingWrapperProps } from './components';
 
 export type FileUrl = {
     url: string;
@@ -58,9 +59,17 @@ export type MarkdownToMatrixProps = {
 
     /**
      * if provided, wraps all elements in the matrix and list view with the 
-     * provided element. Must pass through children without manipulation
+     * provided element. Must call `createChildren` in order to get a set
+     * of elements that function within the filtering / diffing system
      */
     wrapperElement?: React.FC<ElementWrapperProps>;
+
+    /** 
+     * if provided, wraps all headers in the specified element. Children are
+     * prewrapped in <Heading>, but this can be done manually as well in cases
+     * of manipulating the title
+    */
+    headingWrapperElement?: React.FC<HeadingWrapperProps>;
 
     /** 
      * if true, doesn't automatically collapse any elements that appear
@@ -79,3 +88,4 @@ export const MarkdownToMatrix: React.FC<MarkdownToMatrixProps> = (props) => {
 
 // additional exports
 export { ElementWrapperProps };
+export { Heading } from './components'

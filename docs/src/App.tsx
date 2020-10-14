@@ -1,6 +1,6 @@
 import React from 'react';
 import { MarkdownToMatrix } from 'react-markdown-to-matrix';
-import { Wrapper } from './Wrapper';
+// import { Wrapper } from './Wrapper';
 
 export const App: React.FC = () => {
     return(
@@ -30,8 +30,11 @@ export const App: React.FC = () => {
             excludeHeaders={['FAQ']}
 
             // uncomment to turn this into a checklist
-            wrapperElement={Wrapper}
-
+            // wrapperElement={Wrapper}
+            
+            // uncomment to play with wrapper elements on headers
+            // headingWrapperElement={({ children}) => <div style={{backgroundColor: '#10162f', color: '#FFF'}}>{children}</div>}
+            
             // uncomment to prevent the same elements from
             // being collapsed across rows
             // disableCollapsing={true}

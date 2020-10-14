@@ -23,7 +23,8 @@ export const App: React.FC<MarkdownToMatrixProps> = ({
   renderHtml,
   excludeHeaders,
   wrapperElement,
-  disableCollapsing
+  disableCollapsing,
+  headingWrapperElement
 }) => {
 
   const allowUpload = enabledOptions.includes('upload');
@@ -70,6 +71,10 @@ export const App: React.FC<MarkdownToMatrixProps> = ({
 
   if (wrapperElement) {
     config.wrapper = wrapperElement;
+  }
+
+  if (headingWrapperElement) {
+    config.headingWrapper = headingWrapperElement;
   }
 
   return (

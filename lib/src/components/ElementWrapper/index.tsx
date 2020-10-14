@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { config } from '../../helpers/config';
 import { Context, Element } from '../../models';
 
@@ -6,6 +6,7 @@ export type ElementWrapperProps = {
     content: string;
     element: Element;
     context: Context;
+    createChildren: (element: Element) => ReactElement;
 };
 
 export const ElementWrapper: React.FC<ElementWrapperProps> = ({ children, content, ...props }) => {

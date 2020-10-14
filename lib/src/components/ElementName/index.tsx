@@ -17,12 +17,22 @@ export type ElementNameProps = {
 export const ElementName: React.FC<ElementNameProps> = ({ element, suffix, className, subtle, context }) => {
     const similarities = useSelector((state: State) => selectSimilarElements(state, element.id));
 
+
+    // if the element needs to be modified, wrapping elements can 
+    // use createChildren to generate a new set of children with
+    // the appropriate context
+    const createChildren = (e: Element) => (
+        <>
+            <Diff name={e.name} similarities={similarities} />
+            {suffix && <StyledSuffix>{suffix}</StyledSuffix>}
+        </>
+    )
+
     return (
         <StyledName className={className} subtle={subtle}>
 
-            <ElementWrapper content={element.name} element={element} context={context} >
-                <Diff name={element.name} similarities={similarities} />
-                {suffix && <StyledSuffix>{suffix}</StyledSuffix>}
+            <ElementWrapper content={element.name} element={element} context={context} createChildren={createChildren}>
+                {createChildren(element)}
             </ElementWrapper>
 
         </StyledName>

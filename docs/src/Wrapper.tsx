@@ -6,7 +6,8 @@ export const Wrapper: React.FC<ElementWrapperProps> = ({
     children,
     content,
     context,
-    element
+    element,
+    //createChildren
 }) => {
     return (
         <label>
@@ -17,6 +18,11 @@ export const Wrapper: React.FC<ElementWrapperProps> = ({
                 onChange={() => console.log(`${element?.column} x ${context?.currentRow} : ${content}`)}
             />
             {children}
+
+            {/** 
+                alternatively, createChildren could be used here, providing 
+                a modified version of `element` as an argument 
+            */}
         </label>
     );
 };
