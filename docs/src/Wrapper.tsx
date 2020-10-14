@@ -11,8 +11,9 @@ export const Wrapper: React.FC<ElementWrapperProps> = ({
     return (
         <label>
             <input 
-                type='checkbox' 
-                style={{ marginLeft: '-1.2rem' }} 
+                name={context.currentRow}
+                type='radio' 
+                style={{ marginLeft: '-0.4rem' }} 
                 onChange={() => console.log(`${element?.column} x ${context?.currentRow} : ${content}`)}
             />
             {children}

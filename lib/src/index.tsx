@@ -61,6 +61,12 @@ export type MarkdownToMatrixProps = {
      * provided element. Must pass through children without manipulation
      */
     wrapperElement?: React.FC<ElementWrapperProps>;
+
+    /** 
+     * if true, doesn't automatically collapse any elements that appear
+     * in multiple rows
+     */
+    disableCollapsing?: boolean;
 }
 
 export const MarkdownToMatrix: React.FC<MarkdownToMatrixProps> = (props) => {

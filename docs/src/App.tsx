@@ -26,10 +26,15 @@ export const App: React.FC = () => {
                 bodyFont: 'Anonymous Pro'
             }}
             
+            // add any headers here that show up in the MD file but shouldn't become context in the app
             excludeHeaders={['FAQ']}
 
             // uncomment to turn this into a checklist
-            // wrapperElement={Wrapper}
+            wrapperElement={Wrapper}
+
+            // uncomment to prevent the same elements from
+            // being collapsed across rows
+            // disableCollapsing={true}
         />
     );
 };

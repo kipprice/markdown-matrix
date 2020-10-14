@@ -11,6 +11,7 @@ import { MarkdownToMatrixProps } from 'index';
 import { colors, parseCustomTheme } from './helpers/styles';
 import { EXCLUDE_HEADERS } from './helpers/matcher';
 import { config } from './helpers/config';
+import { createDisableCollapsingAction } from './reducers/disableCollapsing';
 
 export const App: React.FC<MarkdownToMatrixProps> = ({
   enabledOptions = ['filters', 'displayMode'],
@@ -21,7 +22,8 @@ export const App: React.FC<MarkdownToMatrixProps> = ({
   defaultMode,
   renderHtml,
   excludeHeaders,
-  wrapperElement
+  wrapperElement,
+  disableCollapsing
 }) => {
 
   const allowUpload = enabledOptions.includes('upload');
@@ -39,6 +41,13 @@ export const App: React.FC<MarkdownToMatrixProps> = ({
     useEffect(() => {
       dispatch(createDisplayModeAction(defaultMode))
     });
+  }
+
+  // don't allow collapsing
+  if (disableCollapsing) {
+    useEffect(() => {
+      dispatch(createDisableCollapsingAction())
+    })
   }
 
   if (renderHtml) {

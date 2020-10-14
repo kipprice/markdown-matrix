@@ -8,6 +8,7 @@ type CompetencyBucket = {
 export const bucketBySpecificRow = (
   competencies: Element[],
   row: RowName,
+  disableCollapsing?: boolean
 ): CompetencyBucket[] => {
   const buckets: Record<string, CompetencyBucket> = {};
 
@@ -16,7 +17,7 @@ export const bucketBySpecificRow = (
 
     // check for different origin altogether
     const { originRow } = c;
-    if (row !== originRow) { originKey = "other"; }
+    if (!disableCollapsing && (row !== originRow)) { originKey = "other"; }
 
     // create the bucket if need be & add to it
     if (!buckets[originKey]) {

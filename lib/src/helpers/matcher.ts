@@ -1,11 +1,11 @@
 export const EXCLUDE_HEADERS: string[] = [];
-const LEVEL_REGEX = /^\s*?##\s*?([\w &/]+)\s*?$/;
-const CATEGORY_REGEX = /^\s*?###\s*?(.+)$/;
-const COMPETENCY_REGEX = /^\s*?[*-]\s*?(.+)$/;
+const ROW_REGEX = /^\s*?##\s(.+)\s*?$/;
+const COLUMN_REGEX = /^\s*?###\s(.+)$/;
+const ELEMENT_REGEX = /^\s*?[*-]\s*?(.+)$/;
 
-export const matchRow = (line: string) => _match(LEVEL_REGEX, line);
-export const matchColumn = (line: string) => _match(CATEGORY_REGEX, line);
-export const matchElement = (line: string) => _match(COMPETENCY_REGEX, line);
+export const matchRow = (line: string) => _match(ROW_REGEX, line);
+export const matchColumn = (line: string) => _match(COLUMN_REGEX, line);
+export const matchElement = (line: string) => _match(ELEMENT_REGEX, line);
 
 const _match = (regex: RegExp, line: string) => {
   const match = regex.exec(line);

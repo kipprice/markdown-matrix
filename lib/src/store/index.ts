@@ -10,7 +10,8 @@ import {
   displayMode, 
   similarityGraph ,
   enableDiffs,
-  renderHtml
+  renderHtml,
+  disableCollapsing,
 } from "../reducers";
 
 
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   similarityGraph,
   enableDiffs,
   renderHtml,
+  disableCollapsing
 });
 
 export const store = createStore<State, any, any, any>(

@@ -7,3 +7,4 @@ export * from './renderHtml';
 export * from './rows';
 export * from './similarityGraph';
 export * from './enableDiffs';
+export * from './disableCollapsing';

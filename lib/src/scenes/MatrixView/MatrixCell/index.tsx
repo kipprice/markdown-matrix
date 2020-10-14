@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { ColumnName, RowName, State } from "../../../models";
-import { selectElementsForRowAndColumn } from "../../../selectors";
+import { selectCollapsingDisabled, selectElementsForRowAndColumn } from "../../../selectors";
 import { bucketBySpecificRow, getOpacity } from "../../../helpers";
 import { CompetencyBucket } from "../CompetencyBucket";
 import styled from '@emotion/styled';
@@ -16,8 +16,9 @@ export const MatrixCell: React.FC<MatrixCellProps> = ({ column, row }) => {
   const elements = useSelector((s: State) =>
     selectElementsForRowAndColumn(s, row, column)
   );
+  const disableCollapsing = useSelector(selectCollapsingDisabled);
 
-  const buckets = bucketBySpecificRow(elements, row);
+  const buckets = bucketBySpecificRow(elements, row, disableCollapsing);
 
   return (
     <StyledMatrixCell f={fontFamilies}>

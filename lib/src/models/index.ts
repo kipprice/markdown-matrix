@@ -54,6 +54,7 @@ export type State = {
     hiddenColumns: Set<ColumnName>;
     displayMode: DisplayMode;
     enableDiffs: boolean;
+    disableCollapsing: boolean;
     renderHtml: boolean;
 
     similarityGraph: Record<ElementId, Similarity[]>

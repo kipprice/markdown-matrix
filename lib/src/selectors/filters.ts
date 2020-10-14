@@ -14,3 +14,5 @@ export const selectHiddenColumns = (state: State) => state.hiddenColumns;
 export const selectAreDiffsEnabled = (state: State) => state.enableDiffs;
 
 export const selectRenderHtml = (state: State) => state.renderHtml;
+
+export const selectCollapsingDisabled = (state: State) => state.disableCollapsing;
