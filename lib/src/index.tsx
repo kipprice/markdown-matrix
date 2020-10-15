@@ -87,5 +87,5 @@ export const MarkdownToMatrix: React.FC<MarkdownToMatrixProps> = (props) => {
 }
 
 // additional exports
-export { ElementWrapperProps };
+export { ElementWrapperProps, HeadingWrapperProps };
 export { Heading } from './components'
