@@ -17,7 +17,7 @@ export const Wrapper: React.FC<ElementWrapperProps> = ({
                 style={{ marginLeft: '-0.4rem' }} 
                 onChange={() => console.log(`${element?.column} x ${context?.currentRow} : ${content}`)}
             />
-            {children}
+            {children} [{context.idx}]
 
             {/** 
                 alternatively, createChildren could be used here, providing 
