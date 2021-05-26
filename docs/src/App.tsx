@@ -14,7 +14,7 @@ export const App: React.FC = () => {
             
             // uncomment to auto-load a file into the app
             // (this is required if no options are provided)
-            //fileUrls={["../tester.md", { url: "../secondary.md", hideByDefault: true }]}
+            fileUrls={["../tester.md", { url: "../secondary.md", hideByDefault: true }]}
             
             // if the markdown file has embedded HTML, default to showing it
             renderHtml={true}
@@ -38,6 +38,10 @@ export const App: React.FC = () => {
             // uncomment to prevent the same elements from
             // being collapsed across rows
             // disableCollapsing={true}
+
+            // uncomment to allow subheaders in matrix mode
+            subheaders={['SUBHEADER', 'SUBHEADER B']}
         />
+
     );
 };

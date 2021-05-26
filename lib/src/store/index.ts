@@ -12,7 +12,11 @@ import {
   enableDiffs,
   renderHtml,
   disableCollapsing,
+<<<<<<< Updated upstream
   singleFileOnly,
+=======
+  specificDisabledForCollapsing
+>>>>>>> Stashed changes
 } from "../reducers";
 
 const rootReducer = combineReducers({
@@ -26,7 +30,11 @@ const rootReducer = combineReducers({
   enableDiffs,
   renderHtml,
   disableCollapsing,
+<<<<<<< Updated upstream
   singleFileOnly,
+=======
+  specificDisabledForCollapsing,
+>>>>>>> Stashed changes
 });
 
 export const store = createStore<State, any, any, any>(

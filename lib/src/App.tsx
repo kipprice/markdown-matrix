@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { FilterBar } from "./scenes/FilterBar";
 import { ListView } from "./scenes/ListView";
 import { MatrixView } from "./scenes/MatrixView";
+<<<<<<< Updated upstream
 import { UploadView } from "./scenes/UploadView";
 import { loadFiles } from "./thunks/load";
 import {
@@ -18,6 +19,16 @@ import {
   createDisableCollapsingAction,
   createSetSingleFileOnlyAction,
 } from "./reducers";
+=======
+import { UploadView } from './scenes/UploadView';
+import { loadFiles } from './thunks/load';
+import { createDisplayModeAction, createEnableRenderHtmlAction } from './reducers';
+import { MarkdownToMatrixProps } from 'index';
+import { colors, parseCustomTheme } from './helpers/styles';
+import { EXCLUDE_HEADERS } from './helpers/matcher';
+import { config } from './helpers/config';
+import { createDisableCollapsingAction, createSpecificDisabledForCollapsingAction } from './reducers/disableCollapsing';
+>>>>>>> Stashed changes
 
 export const App: React.FC<MarkdownToMatrixProps> = ({
   enabledOptions = ["filters", "displayMode"],
@@ -31,12 +42,17 @@ export const App: React.FC<MarkdownToMatrixProps> = ({
   wrapperElement,
   disableCollapsing,
   headingWrapperElement,
+<<<<<<< Updated upstream
   singleFileOnly,
+=======
+  subheaders
+>>>>>>> Stashed changes
 }) => {
   const allowUpload = enabledOptions.includes("upload");
 
   // load files if any were provided
   const dispatch = useDispatch();
+<<<<<<< Updated upstream
 
   if (singleFileOnly) {
     useEffect(() => {
@@ -76,6 +92,22 @@ export const App: React.FC<MarkdownToMatrixProps> = ({
         EXCLUDE_HEADERS.push(exHead);
       }
     });
+=======
+
+  useEffect(() => {
+    if (fileUrls) { dispatch(loadFiles(fileUrls)) }
+    if (defaultMode) { dispatch(createDisplayModeAction(defaultMode)) }
+    if (disableCollapsing) { dispatch(createDisableCollapsingAction()) }
+    if (renderHtml) { dispatch(createEnableRenderHtmlAction()); }
+    if (subheaders) { dispatch(createSpecificDisabledForCollapsingAction(subheaders))}
+  }, [fileUrls, defaultMode, disableCollapsing, renderHtml, subheaders])
+
+
+  if (excludeHeaders) { 
+    for (let exHead of excludeHeaders) {
+      EXCLUDE_HEADERS.push(exHead);
+    }
+>>>>>>> Stashed changes
   }
 
   if (customTheme) {

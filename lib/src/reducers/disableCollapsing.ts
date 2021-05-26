@@ -24,3 +24,29 @@ export const disableCollapsing = (
       return state;
   }
 };
+
+
+export const SPECIFIC_DISABLED_FOR_COLLAPSING = "SPECIFIC_DISABLED_FOR_COLLAPSING";
+
+export type SpecificDisabledForCollapsing = {
+  type: typeof SPECIFIC_DISABLED_FOR_COLLAPSING;
+};
+
+export const createSpecificDisabledForCollapsingAction = (specifics: string[]) => {
+  return {
+    type: SPECIFIC_DISABLED_FOR_COLLAPSING,
+    specifics
+  }
+}
+
+export const specificDisabledForCollapsing = (
+  state: string[] = [],
+  action: Action<any>
+): string[] => {
+  switch (action.type) {
+    case SPECIFIC_DISABLED_FOR_COLLAPSING:
+      return [...(action as any).specifics];
+    default:
+      return state;
+  }
+}

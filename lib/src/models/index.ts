@@ -45,9 +45,23 @@ export type Similarity = {
 };
 
 export type State = {
+<<<<<<< Updated upstream
   columns: Set<ColumnName>;
   rows: Set<RowName>;
   elements: Record<ElementId, Element>;
+=======
+    columns: Set<ColumnName>;
+    rows: Set<RowName>;
+    elements: Record<ElementId, Element>;
+    
+    hiddenRows: Set<RowName>;
+    hiddenColumns: Set<ColumnName>;
+    displayMode: DisplayMode;
+    enableDiffs: boolean;
+    disableCollapsing: boolean;
+    specificDisabledForCollapsing: string[];
+    renderHtml: boolean;
+>>>>>>> Stashed changes
 
   hiddenRows: Set<RowName>;
   hiddenColumns: Set<ColumnName>;

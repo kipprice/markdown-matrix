@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
-import React from 'react';
+import React, { HTMLProps } from 'react';
 import { fontFamilies } from '../../helpers/styles';
 
-export type HeadingProps = {
-    as: 'h2' | 'h3';
+export type HeadingProps = HTMLProps<HTMLDivElement> & {
+    as: 'h2' | 'h3' | 'h4';
     mode: 'matrix' | 'list';
 };
 
-export const Heading: React.FC<HeadingProps> = ({ as, mode, children }) => {
+export const Heading: React.FC<HeadingProps> = ({ as, mode, children, ...props }) => {
 
     const StyledHeading = styled(mode === 'matrix' ? 'div' : as)`
         margin: 0;
@@ -16,7 +16,7 @@ export const Heading: React.FC<HeadingProps> = ({ as, mode, children }) => {
     `;
 
     return(
-        <StyledHeading>{children}</StyledHeading>
+        <StyledHeading {...props}>{children}</StyledHeading>
     );
 };
 

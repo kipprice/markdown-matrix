@@ -76,11 +76,26 @@ export type MarkdownToMatrixProps = {
    */
   disableCollapsing?: boolean;
 
+<<<<<<< Updated upstream
   /**
    * If true, only allows a single file to be loaded at a time
    */
   singleFileOnly?: boolean;
 };
+=======
+    /** 
+     * if true, doesn't automatically collapse any elements that appear
+     * in multiple rows
+     */
+    disableCollapsing?: boolean;
+
+    /**
+     * if provided, looks for key phrases and treats them as subheaders 
+     * instead of entries
+     */
+    subheaders?: string[];
+}
+>>>>>>> Stashed changes
 
 export const MarkdownToMatrix: React.FC<MarkdownToMatrixProps> = (props) => {
   return (
