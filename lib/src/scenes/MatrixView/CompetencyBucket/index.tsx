@@ -56,8 +56,8 @@ export const CompetencyBucket: React.FC<CompetencyBucketProps> = ({
         </div>
       )}
       <ul className="hiddenCompetencies">
-        {competencies.map((c) => (
-          <MatrixItem key={`matrix-item-${row}-${c.id}`} element={c} row={row} origin={origin} />
+        {competencies.map((c, idx) => (
+          <MatrixItem key={`matrix-item-${row}-${c.id}`} element={c} row={row} origin={origin} idx={idx} />
         ))}
       </ul>
     </StyledBucket>

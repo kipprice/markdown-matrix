@@ -9,9 +9,10 @@ import { selectSimilarElements } from '../../../selectors';
 type ListItemProps = {
     row: RowName;
     element: Element;
+    idx: number;
 }
 
-export const ListItem = ({ element, row }: ListItemProps) => {
+export const ListItem = ({ element, row, idx }: ListItemProps) => {
     const similarities = useSelector((state: State) => selectSimilarElements(state, element.id));
 
     const otherRows = element.belongsToRows.filter((l) => l !== row );
@@ -20,7 +21,7 @@ export const ListItem = ({ element, row }: ListItemProps) => {
     
     return (
         <StyledCompetency c={colors} f={fontFamilies}>
-            <ElementName subtle={otherRows.length > 0} element={element} context={{ currentRow: row }} />
+            <ElementName subtle={otherRows.length > 0} element={element} context={{ currentRow: row, idx }} />
 
             {/* hover bubble for the list item */}
             {showBubble &&

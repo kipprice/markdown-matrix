@@ -62,4 +62,5 @@ export type State = {
 
 export type Context = {
     currentRow?: RowName;
+    idx?: number;
 }

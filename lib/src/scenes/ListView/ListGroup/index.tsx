@@ -48,11 +48,12 @@ export const ListGroup = ({ row, column }: ListGroupProps) => {
       {/** content */}
       <span className="groupChildren">
         {column
-          ? elements.map((comp) => (
+          ? elements.map((comp, idx) => (
               <ListItem
                 key={`listitem-${comp.id}`}
                 row={row}
                 element={comp}
+                idx={idx}
               />
             ))
           : [...columns].map((cat) => (

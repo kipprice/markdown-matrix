@@ -9,9 +9,10 @@ export type MatrixItemProps = {
     element: Element;
     row: RowName;
     origin: RowName | 'other';
+    idx: number;
 };
 
-export const MatrixItem: React.FC<MatrixItemProps> = ({ element, row, origin }) => {
+export const MatrixItem: React.FC<MatrixItemProps> = ({ element, row, origin, idx }) => {
     const similarities = useSelector((s: State) => selectSimilarElements(s, element.id));
 
     return(
@@ -21,7 +22,7 @@ export const MatrixItem: React.FC<MatrixItemProps> = ({ element, row, origin }) 
               key={`mx-${row}-${origin}-${element.id}-inner`} 
               element={element} 
               suffix={getSuffix(origin, element)} 
-              context={{ currentRow: row }}
+              context={{ currentRow: row, idx }}
             />
 
             {similarities && similarities.length > 0 && 
